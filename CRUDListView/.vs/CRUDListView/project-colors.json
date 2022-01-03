@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "bedef73b-0153-47e4-b9d4-a3366f9e3766": {
+      "ProjectGuid": "bedef73b-0153-47e4-b9d4-a3366f9e3766",
+      "DisplayName": "CRUDListView",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

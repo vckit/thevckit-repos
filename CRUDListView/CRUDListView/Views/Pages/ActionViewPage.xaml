@@ -1,0 +1,101 @@
+﻿<Page x:Class="CRUDListView.Views.Pages.ActionViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CRUDListView.Views.Pages"
+      mc:Ignorable="d" Background="White"
+      FontSize="16"
+      d:DesignHeight="480" d:DesignWidth="800"
+      Title="Action Data">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Grid Width="230" Height="230">
+                    <Border x:Name="Mask" BorderBrush="LightGray" BorderThickness="1" Background="WhiteSmoke" CornerRadius="20" Margin="5"/>
+                    <Image Name="Pic" Source="{Binding UserPersonal.GetPhoto}">
+                        <Image.OpacityMask>
+                            <VisualBrush Visual="{Binding ElementName=Mask}"/>
+                        </Image.OpacityMask>
+                    </Image>
+                </Grid>
+                <TextBlock Text="File name: "/>
+                <TextBlock Name="TxbFileName"/>
+                <Button Background="Black"
+                        Foreground="White"
+                        Content="Choose file"
+                        Height="35"
+                        FontWeight="SemiBold"
+                        Name="ChooseFileBtn"
+                        Click="ChooseFileBtn_Click"
+                        Margin="0,10">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="First name: "/>
+                <TextBox Text="{Binding UserPersonal.FirstName}"
+                         Width="300"/>
+                <TextBlock Text="Last name: "/>
+                <TextBox Text="{Binding UserPersonal.LastName}"
+                         Width="300"/>
+                <TextBlock Text="E-Mail: "/>
+                <TextBox Text="{Binding UserPersonal.Email}"
+                         Width="300"/>
+                <TextBlock Text="Date of birth: "/>
+                <DatePicker SelectedDate="{Binding UserPersonal.DateOfBirth}"
+                            Width="300" SelectedDateFormat="Long"/>
+                <TextBlock Text="Phone: "/>
+                <TextBox Text="{Binding UserPersonal.Phone}"
+                         MaxLength="13"
+                         PreviewTextInput="TextBox_PreviewTextInput"
+                         Width="300"/>
+                <TextBlock Text="Telegram: "/>
+                <TextBox Text="{Binding UserPersonal.Telegram}"
+                         Width="300"
+                         x:Name="TelegramTxb"/>
+                <TextBlock Text="Status: "/>
+                <ComboBox ItemsSource="{Binding Status}"
+                          SelectedItem="{Binding UserPersonal.Status}"
+                          DisplayMemberPath="Title"
+                          Width="300"/>
+                <Button Background="Black"
+                        Foreground="White"
+                        Content="Save data"
+                        Height="35"
+                        FontWeight="SemiBold"
+                        x:Name="SaveBtn"
+                        Click="SaveBtn_Click"
+                        Margin="0,10">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
