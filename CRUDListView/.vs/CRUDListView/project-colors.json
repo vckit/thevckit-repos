@@ -5,7 +5,12 @@
       "ProjectGuid": "bedef73b-0153-47e4-b9d4-a3366f9e3766",
       "DisplayName": "CRUDListView",
       "ColorIndex": 0
+    },
+    "f19b2651-71cb-4e61-936c-6583a9b43ede": {
+      "ProjectGuid": "f19b2651-71cb-4e61-936c-6583a9b43ede",
+      "DisplayName": "Server",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

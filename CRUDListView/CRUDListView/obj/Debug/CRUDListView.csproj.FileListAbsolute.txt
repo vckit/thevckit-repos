@@ -25,3 +25,4 @@ C:\Users\thevc\Documents\мои проекты\github\thevckit-dotnet\CRUDListVi
 C:\Users\thevc\Documents\мои проекты\github\thevckit-dotnet\CRUDListView\CRUDListView\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\thevc\Documents\мои проекты\github\thevckit-dotnet\CRUDListView\CRUDListView\obj\Debug\CRUDListView_Content.g.cs
 C:\Users\thevc\Documents\мои проекты\github\thevckit-dotnet\CRUDListView\CRUDListView\obj\Debug\CRUDListView.csproj.CopyComplete
+C:\Users\thevc\Documents\мои проекты\github\thevckit-dotnet\CRUDListView\CRUDListView\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

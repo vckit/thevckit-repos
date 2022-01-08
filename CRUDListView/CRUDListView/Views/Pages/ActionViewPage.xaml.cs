@@ -17,8 +17,6 @@ namespace CRUDListView.Views.Pages
     public partial class ActionViewPage : Page
     {
         public UserPersonal UserPersonal { get; set; }
-        public string Phone { get; set; }
-        public int PhoneLength { get; set; }
         public List<Status> Status { get; set; }
 
         public ActionViewPage(UserPersonal user)

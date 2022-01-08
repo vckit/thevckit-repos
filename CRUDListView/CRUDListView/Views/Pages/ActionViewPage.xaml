@@ -15,7 +15,7 @@
             <Setter Property="Margin" Value="0,5"/>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

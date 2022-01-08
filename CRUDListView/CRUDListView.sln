@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDListView", "CRUDListView\CRUDListView.csproj", "{BEDEF73B-0153-47E4-B9D4-A3366F9E3766}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{F19B2651-71CB-4E61-936C-6583A9B43EDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BEDEF73B-0153-47E4-B9D4-A3366F9E3766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEDEF73B-0153-47E4-B9D4-A3366F9E3766}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEDEF73B-0153-47E4-B9D4-A3366F9E3766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19B2651-71CB-4E61-936C-6583A9B43EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19B2651-71CB-4E61-936C-6583A9B43EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19B2651-71CB-4E61-936C-6583A9B43EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19B2651-71CB-4E61-936C-6583A9B43EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
