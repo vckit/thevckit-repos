@@ -22,7 +22,11 @@ namespace WpfApp2.Views.Pages
 
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => 
+            item.Abonent.GetFullName.Contains(txbSearch.Text) ||
+            item.ATC.Code.ToString().Contains(txbSearch.Text) || 
+            item.Abonent.Phone.Contains(txbSearch.Text) || 
+            item.Abonent.Address.Contains(txbSearch.Text)).ToList();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -81,6 +85,19 @@ namespace WpfApp2.Views.Pages
         private void ButtonUpdateData_Click(object sender, RoutedEventArgs e)
         {
             Page_Loaded(null, null);
+        }
+
+
+        private void CheckBoxDebt_Checked(object sender, RoutedEventArgs e)
+        {
+            if(CheckBoxDebt.IsChecked == true)
+            {
+                ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => item.Sim.Debt >= 100).ToList();
+            }
+            else
+            {
+                ListData.ItemsSource = AppData.db.SimATCAbonent.ToList();
+            }
         }
     }
 }

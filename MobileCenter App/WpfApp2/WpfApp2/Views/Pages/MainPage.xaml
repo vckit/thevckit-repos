@@ -34,7 +34,8 @@
                                  Width="350"
                                  TextChanged="txbSearch_TextChanged"/>
                     </StackPanel>
-                    <CheckBox Content="только задолжность выше 100 рублей"/>
+                    <CheckBox Name="CheckBoxDebt" Content="только задолжность выше 100 рублей"
+                              Checked="CheckBoxDebt_Checked"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
