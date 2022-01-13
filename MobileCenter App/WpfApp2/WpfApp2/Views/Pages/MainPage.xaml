@@ -1,0 +1,75 @@
+﻿<Page x:Class="WpfApp2.Views.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.Views.Pages"
+      mc:Ignorable="d" FontSize="15" Loaded="Page_Loaded"
+      d:DesignHeight="450" d:DesignWidth="1400"
+      Title="Меню">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                <Button Style="{StaticResource FunctionButton}"
+                        Width="150"
+                        Margin="10"
+                        Click="ButtonUpdateData_Click"
+                        Content="Обновить данные"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Left">
+                        <TextBlock Text="Поиск: "/>
+                        <TextBox Name="txbSearch"
+                                 Width="350"
+                                 TextChanged="txbSearch_TextChanged"/>
+                    </StackPanel>
+                    <CheckBox Content="только задолжность выше 100 рублей"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <DataGrid x:Name="ListData"
+                      Margin="5"
+                      IsReadOnly="True"
+                      AutoGenerateColumns="False"
+                      ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер" Binding="{Binding Abonent.Phone}"/>
+                    <DataGridTextColumn Header="Абонент" Binding="{Binding Abonent.GetFullName}"/>
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Abonent.Address}"/>
+                    <DataGridTextColumn Header="ATC" Binding="{Binding IDATC}"/>
+                    <DataGridTextColumn Header="Наличие блокатора" Binding="{Binding Abonent.PresenceBlocker}"/>
+                    <DataGridTextColumn Header="Номер спаренного телефона" Binding="{Binding Sim.PairedPhoneNumber}"/>
+                    <DataGridTextColumn Header="Задолжность" Binding="{Binding Sim.Debt}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <Button Style="{StaticResource FunctionButton}"
+                        Content="ДОБАВИТЬ"
+                        Click="ButtonAdd_Click"/>
+                <Button Style="{StaticResource FunctionButton}"
+                        Content="РЕДАКТИРОВАТЬ"
+                        Click="ButtonEdit_Click"
+                        Margin="10,0"/>
+                <Button Style="{StaticResource FunctionButton}"
+                        Content="УДАЛИТЬ"
+                        Click="ButtonDelete_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,53 @@
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\WpfApp2.exe.config
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\WpfApp2.exe
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\WpfApp2.pdb
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\EntityFramework.dll
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\EntityFramework.xml
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.AssemblyReference.cache
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.SuggestedBindingRedirects.cache
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Windows\MainWindow.g.cs
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\App.g.cs
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2_Content.g.cs
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.cache
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.lref
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Windows\MainWindow.baml
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.g.resources
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.Properties.Resources.resources
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.GenerateResource.cache
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.CoreCompileInputs.cache
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.CopyComplete
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.exe
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\WpfApp2.pdb
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Pages\MainPage.g.cs
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\App.baml
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Pages\MainPage.baml
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Pages\ActionPage.g.cs
+C:\Users\thevc\Documents\my work\wpf\WpfApp2\WpfApp2\obj\Debug\Views\Pages\ActionPage.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\WpfApp2.exe.config
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\WpfApp2.exe
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\WpfApp2.pdb
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\EntityFramework.dll
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\EntityFramework.xml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.SuggestedBindingRedirects.cache
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Pages\ActionPage.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Pages\MainPage.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Windows\MainWindow.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\App.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2_Content.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.cache
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2_MarkupCompile.lref
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\App.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Pages\ActionPage.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Pages\MainPage.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\Views\Windows\MainWindow.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.g.resources
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.Properties.Resources.resources
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.GenerateResource.cache
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.CoreCompileInputs.cache
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.CopyComplete
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.exe
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.pdb

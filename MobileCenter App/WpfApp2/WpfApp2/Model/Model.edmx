@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbMobileCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Abonent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="30" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="PresenceBlocker" Type="bit" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="550" />
+        </EntityType>
+        <EntityType Name="ATC">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="IDDistrict" Type="int" Nullable="false" />
+          <Property Name="CountNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CityDisctict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDDisctrict" Type="int" Nullable="false" />
+          <Property Name="IDCity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disctrict">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PairedPhoneNumber" Type="int" Nullable="false" />
+          <Property Name="Debt" Type="money" />
+          <Property Name="DateInstalled" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SimATCAbonent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSim" Type="int" Nullable="false" />
+          <Property Name="IDATC" Type="int" Nullable="false" />
+          <Property Name="IDAbonent" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ATC_CityDisctict1">
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="1" />
+          <End Role="ATC" Type="Self.ATC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityDisctict">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ATC">
+              <PropertyRef Name="IDDistrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityDisctict_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityDisctict">
+              <PropertyRef Name="IDCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityDisctict_Disctrict">
+          <End Role="Disctrict" Type="Self.Disctrict" Multiplicity="1" />
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disctrict">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="CityDisctict">
+              <PropertyRef Name="IDDisctrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimATCAbonent_Abonent">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDAbonent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimATCAbonent_ATC">
+          <End Role="ATC" Type="Self.ATC" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATC">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDATC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimATCAbonent_Sim">
+          <End Role="Sim" Type="Self.Sim" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sim">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDSim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMobileCenterModelStoreContainer">
+          <EntitySet Name="Abonent" EntityType="Self.Abonent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ATC" EntityType="Self.ATC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityDisctict" EntityType="Self.CityDisctict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disctrict" EntityType="Self.Disctrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sim" EntityType="Self.Sim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SimATCAbonent" EntityType="Self.SimATCAbonent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ATC_CityDisctict1" Association="Self.FK_ATC_CityDisctict1">
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+            <End Role="ATC" EntitySet="ATC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityDisctict_City" Association="Self.FK_CityDisctict_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityDisctict_Disctrict" Association="Self.FK_CityDisctict_Disctrict">
+            <End Role="Disctrict" EntitySet="Disctrict" />
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimATCAbonent_Abonent" Association="Self.FK_SimATCAbonent_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimATCAbonent_ATC" Association="Self.FK_SimATCAbonent_ATC">
+            <End Role="ATC" EntitySet="ATC" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimATCAbonent_Sim" Association="Self.FK_SimATCAbonent_Sim">
+            <End Role="Sim" EntitySet="Sim" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbMobileCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Abonent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PresenceBlocker" Type="Boolean" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SimATCAbonent" Relationship="Self.FK_SimATCAbonent_Abonent" FromRole="Abonent" ToRole="SimATCAbonent" />
+        </EntityType>
+        <EntityType Name="ATC">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="IDDistrict" Type="Int32" Nullable="false" />
+          <Property Name="CountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CityDisctict" Relationship="Self.FK_ATC_CityDisctict" FromRole="ATC" ToRole="CityDisctict" />
+          <NavigationProperty Name="SimATCAbonent" Relationship="Self.FK_ATC_SimATCAbonent" FromRole="ATC" ToRole="SimATCAbonent" />
+          <NavigationProperty Name="SimATCAbonent1" Relationship="dbMobileCenterModel.FK_SimATCAbonent_ATC" FromRole="ATC" ToRole="SimATCAbonent" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CityDisctict" Relationship="Self.FK_CityDisctict_City" FromRole="City" ToRole="CityDisctict" />
+        </EntityType>
+        <EntityType Name="CityDisctict">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDDisctrict" Type="Int32" Nullable="false" />
+          <Property Name="IDCity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ATC" Relationship="Self.FK_ATC_CityDisctict" FromRole="CityDisctict" ToRole="ATC" />
+          <NavigationProperty Name="City" Relationship="Self.FK_CityDisctict_City" FromRole="CityDisctict" ToRole="City" />
+          <NavigationProperty Name="Disctrict" Relationship="Self.FK_CityDisctict_Disctrict" FromRole="CityDisctict" ToRole="Disctrict" />
+        </EntityType>
+        <EntityType Name="Disctrict">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CityDisctict" Relationship="Self.FK_CityDisctict_Disctrict" FromRole="Disctrict" ToRole="CityDisctict" />
+        </EntityType>
+        <EntityType Name="Sim">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PairedPhoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="Debt" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateInstalled" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="SimATCAbonent" Relationship="Self.FK_SimATCAbonent_Sim" FromRole="Sim" ToRole="SimATCAbonent" />
+        </EntityType>
+        <EntityType Name="SimATCAbonent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSim" Type="Int32" Nullable="false" />
+          <Property Name="IDATC" Type="Int32" Nullable="false" />
+          <Property Name="IDAbonent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Abonent" Relationship="Self.FK_SimATCAbonent_Abonent" FromRole="SimATCAbonent" ToRole="Abonent" />
+          <NavigationProperty Name="ATC" Relationship="Self.FK_ATC_SimATCAbonent" FromRole="SimATCAbonent" ToRole="ATC" />
+          <NavigationProperty Name="Sim" Relationship="Self.FK_SimATCAbonent_Sim" FromRole="SimATCAbonent" ToRole="Sim" />
+          <NavigationProperty Name="ATC1" Relationship="dbMobileCenterModel.FK_SimATCAbonent_ATC" FromRole="SimATCAbonent" ToRole="ATC" />
+        </EntityType>
+        <Association Name="FK_SimATCAbonent_Abonent">
+          <End Role="Abonent" Type="Self.Abonent" Multiplicity="1" />
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Abonent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDAbonent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ATC_CityDisctict">
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="1" />
+          <End Role="ATC" Type="Self.ATC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityDisctict">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ATC">
+              <PropertyRef Name="IDDistrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ATC_SimATCAbonent">
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="1" />
+          <End Role="ATC" Type="Self.ATC" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SimATCAbonent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ATC">
+              <PropertyRef Name="Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityDisctict_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityDisctict">
+              <PropertyRef Name="IDCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityDisctict_Disctrict">
+          <End Role="Disctrict" Type="Self.Disctrict" Multiplicity="1" />
+          <End Role="CityDisctict" Type="Self.CityDisctict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disctrict">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="CityDisctict">
+              <PropertyRef Name="IDDisctrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SimATCAbonent_Sim">
+          <End Role="Sim" Type="Self.Sim" Multiplicity="1" />
+          <End Role="SimATCAbonent" Type="Self.SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sim">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDSim" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbMobileCenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Abonent" EntityType="Self.Abonent" />
+          <EntitySet Name="ATC" EntityType="Self.ATC" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="CityDisctict" EntityType="Self.CityDisctict" />
+          <EntitySet Name="Disctrict" EntityType="Self.Disctrict" />
+          <EntitySet Name="Sim" EntityType="Self.Sim" />
+          <EntitySet Name="SimATCAbonent" EntityType="Self.SimATCAbonent" />
+          <AssociationSet Name="FK_SimATCAbonent_Abonent" Association="Self.FK_SimATCAbonent_Abonent">
+            <End Role="Abonent" EntitySet="Abonent" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ATC_CityDisctict" Association="Self.FK_ATC_CityDisctict">
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+            <End Role="ATC" EntitySet="ATC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ATC_SimATCAbonent" Association="Self.FK_ATC_SimATCAbonent">
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+            <End Role="ATC" EntitySet="ATC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityDisctict_City" Association="Self.FK_CityDisctict_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityDisctict_Disctrict" Association="Self.FK_CityDisctict_Disctrict">
+            <End Role="Disctrict" EntitySet="Disctrict" />
+            <End Role="CityDisctict" EntitySet="CityDisctict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SimATCAbonent_Sim" Association="Self.FK_SimATCAbonent_Sim">
+            <End Role="Sim" EntitySet="Sim" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="dbMobileCenterModel.sysdiagrams" />
+          <AssociationSet Name="FK_SimATCAbonent_ATC" Association="dbMobileCenterModel.FK_SimATCAbonent_ATC">
+            <End Role="ATC" EntitySet="ATC" />
+            <End Role="SimATCAbonent" EntitySet="SimATCAbonent" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_SimATCAbonent_ATC">
+          <End Type="dbMobileCenterModel.ATC" Role="ATC" Multiplicity="1" />
+          <End Type="dbMobileCenterModel.SimATCAbonent" Role="SimATCAbonent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATC">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="SimATCAbonent">
+              <PropertyRef Name="IDATC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbMobileCenterModelStoreContainer" CdmEntityContainer="dbMobileCenterEntities">
+          <EntitySetMapping Name="Abonent">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.Abonent">
+              <MappingFragment StoreEntitySet="Abonent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PresenceBlocker" ColumnName="PresenceBlocker" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ATC">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.ATC">
+              <MappingFragment StoreEntitySet="ATC">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="IDDistrict" ColumnName="IDDistrict" />
+                <ScalarProperty Name="CountNumber" ColumnName="CountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityDisctict">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.CityDisctict">
+              <MappingFragment StoreEntitySet="CityDisctict">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDDisctrict" ColumnName="IDDisctrict" />
+                <ScalarProperty Name="IDCity" ColumnName="IDCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disctrict">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.Disctrict">
+              <MappingFragment StoreEntitySet="Disctrict">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sim">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.Sim">
+              <MappingFragment StoreEntitySet="Sim">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PairedPhoneNumber" ColumnName="PairedPhoneNumber" />
+                <ScalarProperty Name="Debt" ColumnName="Debt" />
+                <ScalarProperty Name="DateInstalled" ColumnName="DateInstalled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SimATCAbonent">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.SimATCAbonent">
+              <MappingFragment StoreEntitySet="SimATCAbonent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDSim" ColumnName="IDSim" />
+                <ScalarProperty Name="IDATC" ColumnName="IDATC" />
+                <ScalarProperty Name="IDAbonent" ColumnName="IDAbonent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbMobileCenterModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

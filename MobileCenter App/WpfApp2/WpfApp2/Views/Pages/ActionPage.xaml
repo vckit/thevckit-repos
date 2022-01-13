@@ -1,0 +1,110 @@
+﻿<Page x:Class="WpfApp2.Views.Pages.ActionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp2.Views.Pages"
+      mc:Ignorable="d" FontSize="15"
+      d:DesignHeight="450" d:DesignWidth="1400"
+      Title="Работа с Базой Данных">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <TextBlock Text="ATC"
+                       Margin="0,20"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+                <TextBlock Text="Код ATC: "/>
+                <TextBox Text="{Binding ATC.Code}"
+                     PreviewTextInput="TextBox_PreviewTextInput"/>
+                <TextBlock Text="Район: "/>
+                <ComboBox ItemsSource="{Binding Disctricts}"
+                      DisplayMemberPath="GetCityDisctict"
+                      SelectedItem="{Binding ATC.CityDisctict}"
+                      Width="350"/>
+                <TextBlock Text="Количество номеров: "/>
+                <TextBox Text="{Binding ATC.CountNumber}" 
+                     PreviewTextInput="TextBox_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <TextBlock Text="АБОНЕНТ"
+                       Margin="0,20"
+                       FontSize="20"
+                       FontWeight="SemiBold"/>
+                <TextBlock Text="Номер: "/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Width="50" Name="cmbCode" Margin="0,0,10,0">
+                        <ComboBoxItem>+7</ComboBoxItem>
+                        <ComboBoxItem>+11</ComboBoxItem>
+                        <ComboBoxItem>+983</ComboBoxItem>
+                        <ComboBoxItem>+2</ComboBoxItem>
+                        <ComboBoxItem>+932</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Width ="290"
+                             MaxLength="10"
+                             PreviewTextInput="TextBox_PreviewTextInput"
+                             Text="{Binding Abonent.Phone}"/>
+                </StackPanel>
+                <TextBlock Text="Фамилия: "/>
+                <TextBox Width ="350"
+                     Text="{Binding Abonent.FirstName}"/>
+                <TextBlock Text="Имя: "/>
+                <TextBox Width ="350"
+                     Text="{Binding Abonent.LastName}"/>
+                <TextBlock Text="Адрес: "/>
+                <TextBox Width ="350"
+                     TextWrapping="Wrap"
+                     Height="70"
+                     Text="{Binding Abonent.Address}"/>
+                <CheckBox Content="Наличие блокатора"
+                      Margin="0,10"
+                      IsChecked="{Binding Abonent.PresenceBlocker}"/>
+                <TextBlock Text="Примечание: "/>
+                <TextBox Width="350"
+                     Height="70"
+                     TextWrapping="Wrap"
+                     Text="{Binding Abonent.Note}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <TextBlock Text="Номер спаренного телефона: "/>
+                <TextBox Width ="350"
+                     PreviewTextInput="TextBox_PreviewTextInput"
+                     Text="{Binding Sim.PairedPhoneNumber}"/>
+                <TextBlock Text="Задолжность: "/>
+                <TextBox Width ="350"
+                     PreviewTextInput="TextBox_PreviewTextInput"
+                     Text="{Binding Sim.Debt}"/>
+                <TextBlock Text="Дата установки: "/>
+                <DatePicker Width ="350"
+                        SelectedDate="{Binding Sim.Debt}"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+            <Button Style="{StaticResource FunctionButton}"
+                    Content="СОХРАНИТЬ ДАННЫЕ"
+                    FontWeight="SemiBold"
+                    Click="ButtonSaveData_Click"/>
+        </StackPanel>
+    </Grid>
+
+</Page>
