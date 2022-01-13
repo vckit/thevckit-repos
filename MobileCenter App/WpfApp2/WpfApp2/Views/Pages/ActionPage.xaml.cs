@@ -63,6 +63,7 @@ namespace WpfApp2.Views.Pages
                         AppData.db.SimATCAbonent.Add(SimATCAbonent);
                     }
                 }
+                Abonent.Phone = Phone;
                 AppData.db.SaveChanges();
                 MessageBox.Show("ДАННЫЕ УСПЕШНО СОХРАНЕНЫ В БАЗЕ ДАННЫХ.", "СОХРАНЕНО", MessageBoxButton.OK, MessageBoxImage.Information);
             }

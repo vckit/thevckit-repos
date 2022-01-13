@@ -51,3 +51,4 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.CopyComplete
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.exe
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.pdb
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\MobileCenter App\WpfApp2\WpfApp2\obj\Debug\WpfApp2.csproj.AssemblyReference.cache

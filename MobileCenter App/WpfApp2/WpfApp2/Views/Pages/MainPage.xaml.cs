@@ -18,14 +18,16 @@ namespace WpfApp2.Views.Pages
         public MainPage()
         {
             InitializeComponent();
+            cmbDisctrictList.ItemsSource = AppData.db.Disctrict.Select(item => item.Title).ToList();
         }
 
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => 
-            item.Abonent.GetFullName.Contains(txbSearch.Text) ||
-            item.ATC.Code.ToString().Contains(txbSearch.Text) || 
-            item.Abonent.Phone.Contains(txbSearch.Text) || 
+            ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item =>
+            item.Abonent.FirstName.Contains(txbSearch.Text) ||
+            item.Abonent.LastName.Contains(txbSearch.Text) ||
+            item.ATC.Code.ToString().Contains(txbSearch.Text) ||
+            item.Abonent.Phone.Contains(txbSearch.Text) ||
             item.Abonent.Address.Contains(txbSearch.Text)).ToList();
         }
 
@@ -90,14 +92,19 @@ namespace WpfApp2.Views.Pages
 
         private void CheckBoxDebt_Checked(object sender, RoutedEventArgs e)
         {
-            if(CheckBoxDebt.IsChecked == true)
-            {
-                ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => item.Sim.Debt >= 100).ToList();
-            }
-            else
-            {
-                ListData.ItemsSource = AppData.db.SimATCAbonent.ToList();
-            }
+            ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => item.Sim.Debt >= 100).ToList();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var searchDisctricts = AppData.db.Disctrict.FirstOrDefault(item => item.Title == cmbDisctrictList.SelectedItem.ToString()).Code;
+            ListData.ItemsSource = AppData.db.SimATCAbonent.Where(item => item.ATC.CityDisctict.Disctrict.Code == searchDisctricts).ToList();
+        }
+
+        private void CheckBoxDebt_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ListData.ItemsSource = AppData.db.SimATCAbonent.ToList();
+
         }
     }
 }

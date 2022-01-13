@@ -27,15 +27,22 @@
                         VerticalAlignment="Center"
                         Orientation="Horizontal">
                 <StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Групповые номера: "/>
+                        <ComboBox Width="200" Margin="10,0,10,0"></ComboBox>
                         <TextBlock Text="Поиск: "/>
                         <TextBox Name="txbSearch"
-                                 Width="350"
+                                 Width="250"
                                  TextChanged="txbSearch_TextChanged"/>
+                        <TextBlock Text="Районы: "
+                                   Margin="10,0,0,0"/>
+                        <ComboBox Name="cmbDisctrictList" Width="200" SelectionChanged="ComboBox_SelectionChanged">
+                           
+                        </ComboBox>
                     </StackPanel>
                     <CheckBox Name="CheckBoxDebt" Content="только задолжность выше 100 рублей"
-                              Checked="CheckBoxDebt_Checked"/>
+                              Checked="CheckBoxDebt_Checked"
+                              Unchecked="CheckBoxDebt_Unchecked"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
