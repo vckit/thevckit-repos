@@ -1,0 +1,79 @@
+﻿<Page x:Class="InventoryApp.View.Pages.AdminView.ActioInventoryPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
+      mc:Ignorable="d" FontSize="15"
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="Работа над инвентарём">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Наименование: "/>
+                <TextBox Width="300" Text="{Binding InventoryObject.Title}"/>
+                <TextBlock Text="Номер: "/>
+                <TextBox Width="300" Text="{Binding InventoryObject.InventoryNumber}"/>
+                <TextBlock Text="Дата списания: "/>
+                <DatePicker Width="300" SelectedDate="{Binding InventoryObject.CommissioningDate}"/>
+                <TextBlock Text="Тип: "/>
+                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Type}"
+                          ItemsSource="{Binding Types}"
+                          DisplayMemberPath="Title"/>
+                <TextBlock Text="Подтип: "/>
+                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.SubType}"
+                          ItemsSource="{Binding SubTypes}"
+                          DisplayMemberPath="Title"/>
+                <TextBlock Text="Срок годности: "/>
+                <TextBox Width="300" Text="{Binding InventoryObject.LifeTime}"/>
+                <TextBlock Text="Номер расположения: "/>
+                <TextBox Width="300" Text="{Binding Invoce.Number}"/>
+                <TextBlock Text="Дата расположения: "/>
+                <DatePicker Width="300" SelectedDate="{Binding Invoce.Date}"/>
+                <TextBlock Text="Серийный номер деталя: "/>
+                <TextBox Width="300" Text="{Binding InventoryObjectDetails.SeriaNumber}"/>
+                <TextBlock Text="Наименование деталя: "/>
+                <TextBox Width="300" Text="{Binding InventoryObjectDetails.Title}"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Отвественный: "/>
+                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Employe}"
+                          ItemsSource="{Binding Employees}"
+                          DisplayMemberPath="FIO"/>
+                <TextBlock Text="Текущий статус: "/>
+                <ComboBox Width="300" SelectedItem="{Binding CurrentStatus.Status}"
+                          ItemsSource="{Binding Statuses}"
+                          DisplayMemberPath="Title"/>
+
+                <TextBlock Text="Путь к документу: "/>
+                <TextBox Name="txbPath" Width="300"/>
+                <Button Content="Выбрать"
+                        Click="buttonSelectPath_Click"/>
+                <TextBlock Text="Номер акта: "/>
+                <TextBox Width="300" Text="{Binding CurrentStatus.NumberAct}"/>
+                <TextBlock Text="Дата акта: "/>
+                <DatePicker Width="300" SelectedDate="{Binding CurrentStatus.Date}"/>
+                <TextBlock Text="Цена: "/>
+                <TextBox Width="300" Text="{Binding InventoryObject.Amount}"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.ColumnSpan="2"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,30">
+            <Button Content="Сохранить"
+                    Width="300"
+                    Click="buttonSave_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

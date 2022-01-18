@@ -1,0 +1,20 @@
+﻿InventoryApp
+
+
+winexe
+C#
+.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryApp\obj\Debug\
+InventoryApp
+none
+false
+DEBUG;TRACE
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryApp\App.xaml
+72054953638
+2-95638413
+32311941519
+19108686832
+View\Pages\AdminView\ActioInventoryPageView.xaml;View\Pages\AdminView\ViewPage.xaml;View\Pages\UserView\ViewPage.xaml;View\Windows\AuthorizationWindow.xaml;View\Windows\MainWindow.xaml;View\Windows\SetCabinetWindow.xaml;View\Windows\UserWindow.xaml;
+
+False
+
