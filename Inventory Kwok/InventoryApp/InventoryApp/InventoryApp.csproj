@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ArhiveInventoryObject.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Cabinet.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -106,6 +109,7 @@
     </Compile>
     <Compile Include="Model\PartialEmployee.cs" />
     <Compile Include="Model\PartialInventoryObject.cs" />
+    <Compile Include="Model\PartialInventoryObjectDetails.cs" />
     <Compile Include="Model\Position.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -133,6 +137,9 @@
     <Compile Include="View\Pages\AdminView\ActioInventoryPageView.xaml.cs">
       <DependentUpon>ActioInventoryPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\ArchiveWindow.xaml.cs">
+      <DependentUpon>ArchiveWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\SetCabinetWindow.xaml.cs">
       <DependentUpon>SetCabinetWindow.xaml</DependentUpon>
     </Compile>
@@ -148,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\UserView\ViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\ArchiveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

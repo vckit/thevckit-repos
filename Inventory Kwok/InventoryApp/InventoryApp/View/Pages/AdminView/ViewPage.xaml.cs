@@ -53,6 +53,21 @@ namespace InventoryApp.View.Pages.AdminView
             {
                 if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                 {
+                    ArhiveInventoryObject arhiveInventoryObject = new ArhiveInventoryObject();
+                    arhiveInventoryObject.ID = selectedItem.ID;
+                    arhiveInventoryObject.Title = selectedItem.Title;
+                    arhiveInventoryObject.InventoryNumber = selectedItem.InventoryNumber;
+                    arhiveInventoryObject.DocumentationPath = selectedItem.DocumentationPath;
+                    arhiveInventoryObject.IDType = selectedItem.Type.Title;
+                    arhiveInventoryObject.IDSubType = selectedItem.SubType.Title;
+                    arhiveInventoryObject.LifeTime = selectedItem.LifeTime;
+                    arhiveInventoryObject.IDInvoce = selectedItem.Invoce.Number;
+                    arhiveInventoryObject.IDCurrentStatus = selectedItem.CurrentStatus.Status.Title;
+                    arhiveInventoryObject.Amount = selectedItem.Amount;
+                    arhiveInventoryObject.IDEmployee = selectedItem.Employe.FIO;
+                    arhiveInventoryObject.IDInventoryObjectDetail = selectedItem.InventoryObjectDetails.GetTitle;
+                    arhiveInventoryObject.Date = DateTime.Now;
+                    AppData.db.ArhiveInventoryObject.Add(arhiveInventoryObject);
                     AppData.db.InventoryObject.Remove(selectedItem);
                     AppData.db.SaveChanges();
                     Page_Loaded(null, null);
@@ -89,7 +104,7 @@ namespace InventoryApp.View.Pages.AdminView
                 var paragrah = word.ActiveDocument.Paragraphs.Add();
                 var tableRange = paragrah.Range;
                 var inventoryObjectsList = AppData.db.InventoryObject.ToList();
-                var table = document.Tables.Add(tableRange, inventoryObjectsList.Count, 11);
+                var table = document.Tables.Add(tableRange, inventoryObjectsList.Count, 15);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Наименование";
                 table.Cell(1, 2).Range.Text = "Инвентарный номер";
@@ -102,10 +117,10 @@ namespace InventoryApp.View.Pages.AdminView
                 table.Cell(1, 9).Range.Text = "Комплектность – серийный номер";
                 table.Cell(1, 10).Range.Text = "Документация";
                 table.Cell(1, 11).Range.Text = "Состояние списания";
-                //table.Cell(1, 12).Range.Text = "Номер акта";
-                //table.Cell(1, 13).Range.Text = "Дата акта";
-                //table.Cell(1, 14).Range.Text = "Ответственный";
-                //table.Cell(1, 15).Range.Text = "Цена";
+                table.Cell(1, 12).Range.Text = "Номер акта";
+                table.Cell(1, 13).Range.Text = "Дата акта";
+                table.Cell(1, 14).Range.Text = "Ответственный";
+                table.Cell(1, 15).Range.Text = "Цена";
 
                 int i = 2;
                 foreach (var item in inventoryObjectsList)
@@ -121,10 +136,10 @@ namespace InventoryApp.View.Pages.AdminView
                     table.Cell(i, 9).Range.Text = item.InventoryObjectDetails.SeriaNumber;
                     table.Cell(i, 10).Range.Text = item.DocumentationPath;
                     table.Cell(i, 11).Range.Text = item.CurrentStatus.Status.Title;
-                    //table.Cell(i, 12).Range.Text = item.CurrentStatus.NumberAct;
-                    //table.Cell(i, 13).Range.Text = item.CurrentStatus.Date.ToShortDateString();
-                    //table.Cell(i, 14).Range.Text = item.Employe.FIO;
-                    //table.Cell(i, 15).Range.Text = item.Amount.ToString();
+                    table.Cell(i, 12).Range.Text = item.CurrentStatus.NumberAct;
+                    table.Cell(i, 13).Range.Text = item.CurrentStatus.Date.ToShortDateString();
+                    table.Cell(i, 14).Range.Text = item.Employe.FIO;
+                    table.Cell(i, 15).Range.Text = item.Amount.ToString();
                     i++;
                 }
                 document.SaveAs2($"{Environment.CurrentDirectory}\\ведомость.docx");
@@ -148,6 +163,14 @@ namespace InventoryApp.View.Pages.AdminView
                 SetCabinetWindow set = new SetCabinetWindow(new CabinetInventoryObject(), selectedItem);
                 await set.Dispatcher.InvokeAsync(() => set.ShowDialog());
             }
+        }
+
+
+        // Посмотреть Архив
+        private void buttonArchiveView_Click(object sender, RoutedEventArgs e)
+        {
+            ArchiveWindow archive = new ArchiveWindow();
+            archive.ShowDialog();
         }
     }
 }

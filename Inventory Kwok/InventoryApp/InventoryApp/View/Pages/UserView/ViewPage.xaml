@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InventoryApp.View.Pages.UserView"
-      mc:Ignorable="d" 
+      mc:Ignorable="d" Loaded="Page_Loaded"
       d:DesignHeight="600" d:DesignWidth="1100"
       Title="Вы авторизованы как Пользователь">
 
@@ -16,7 +16,28 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <Button Content="Выйти"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="buttonExit_Click"/>
+            </StackPanel>
 
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0">
+                <TextBlock Text="Поиск: "/>
+                <TextBox x:Name="txbSearch"
+                         Width="300"
+                         TextChanged="txbSearch_TextChanged"/>
+            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -44,31 +65,15 @@
                     <DataGridTextColumn Header="Расположение" Binding="{Binding InvoiceId}"/>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                <Button Content="Добавить"
-                        Width="200"
-                        Name="buttonAdd"
-                        Click="buttonAdd_Click"/>
-                <Button Content="Редактировать"
-                        Width="200"
-                        Name="buttonEdit"
-                        Margin="10,0"
-                        Click="buttonEdit_Click"/>
-                <Button Content="Удалить"
-                        Width="200"
-                        Name="buttonDelete"
-                        Click="buttonDelete_Click"/>
-            </StackPanel>
         </Grid>
 
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-
+                <Button Content="Распечатать ведомость"
+                        Width="300"
+                        Click="buttonPrint_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -98,6 +98,10 @@
                 <Button Content="Распечатать ведомость"
                         Width="300"
                         Click="buttonPrint_Click"/>
+                <Button Content="Посмотреть архив"
+                        Margin="10,0,0,0"
+                        Width="300"
+                        Click="buttonArchiveView_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

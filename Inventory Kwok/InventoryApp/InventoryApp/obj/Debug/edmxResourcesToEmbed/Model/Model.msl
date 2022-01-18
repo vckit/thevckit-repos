@@ -25,6 +25,26 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbinventoryModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbinventoryModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="ArhiveInventoryObject">
+      <EntityTypeMapping TypeName="dbinventoryModel.ArhiveInventoryObject">
+        <MappingFragment StoreEntitySet="ArhiveInventoryObject">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IDInventoryObjectDetail" ColumnName="IDInventoryObjectDetail" />
+          <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IDCurrentStatus" ColumnName="IDCurrentStatus" />
+          <ScalarProperty Name="IDInvoce" ColumnName="IDInvoce" />
+          <ScalarProperty Name="LifeTime" ColumnName="LifeTime" />
+          <ScalarProperty Name="IDSubType" ColumnName="IDSubType" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
+          <ScalarProperty Name="DocumentationPath" ColumnName="DocumentationPath" />
+          <ScalarProperty Name="CommissioningDate" ColumnName="CommissioningDate" />
+          <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Cabinet">
       <EntityTypeMapping TypeName="dbinventoryModel.Cabinet">
         <MappingFragment StoreEntitySet="Cabinet">

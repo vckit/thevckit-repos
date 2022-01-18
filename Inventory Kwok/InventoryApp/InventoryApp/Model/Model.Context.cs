@@ -27,6 +27,7 @@ namespace InventoryApp.Model
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ArhiveInventoryObject> ArhiveInventoryObject { get; set; }
         public virtual DbSet<Cabinet> Cabinet { get; set; }
         public virtual DbSet<CabinetInventoryObject> CabinetInventoryObject { get; set; }
         public virtual DbSet<CurrentStatus> CurrentStatus { get; set; }
