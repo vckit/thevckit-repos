@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
       Loaded="Page_Loaded"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1100"
+      d:DesignHeight="450" d:DesignWidth="1300"
       Title="AddUserPageView">
 
     <Grid>
@@ -37,13 +37,15 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <ListView Name="ListUser"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="False"
                       Margin="0,0,10,0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Имя пользователя" DisplayMemberBinding="{Binding Username}" Width="200"/>
                         <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Password}" Width="200"/>
                         <GridViewColumn Header="Роль" DisplayMemberBinding="{Binding GetRoleText}" Width="200"/>
-                        <GridViewColumn Header="Редактировать" Width="300">
+                        <GridViewColumn Header="Редактировать" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"

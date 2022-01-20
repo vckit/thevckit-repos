@@ -81,9 +81,8 @@ namespace InventoryApp.View.Pages.UserView
         // Поиск данных
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-           DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
-           item.Employe.FirstName.Contains(txbSearch.Text) || item.Employe.LastName.Contains(txbSearch.Text) ||
-           item.Employe.Patronymic.Contains(txbSearch.Text)).ToList();
+            DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
+            item.Employe.FIO.Contains(txbSearch.Text)).ToList();
         }
 
         // Выйти

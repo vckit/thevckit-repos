@@ -17,9 +17,9 @@
                     VerticalAlignment="Center">
             <TextBlock Text="Название объекта: "/>
             <TextBlock Width="300" Name="txbTitleInventoryObject"/>
-            <TextBlock Text="Серийный номер деталя: "/>
+            <TextBlock Text="Серийный номер: "/>
             <TextBox Width="300" Name="txbSeraiNumber"/>
-            <TextBlock Text="Наименование деталя: "/>
+            <TextBlock Text="Наименование: "/>
             <TextBox Width="300" Name="txbTitle" />
             <Button Content="Сохранить"
                     Click="buttonSave_Click"/>
@@ -30,6 +30,8 @@
                     VerticalAlignment="Center">
             <TextBlock Name="txbStatus" Foreground="Red"/>
             <ListView Name="ListInventoryObjectDetails"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="False"
                       Margin="0,0,10,0">
                 <ListView.View>
                     <GridView>

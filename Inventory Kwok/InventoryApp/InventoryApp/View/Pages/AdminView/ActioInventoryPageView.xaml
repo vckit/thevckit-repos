@@ -24,11 +24,11 @@
                 <TextBlock Text="Дата ввода в эксплуатацию: "/>
                 <DatePicker Width="300" SelectedDate="{Binding InventoryObject.CommissioningDate}" DisplayDate="2022-01-01"/>
                 <TextBlock Text="Тип: "/>
-                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Type}"
+                <ComboBox Name="cmbType" Width="300" SelectedItem="{Binding InventoryObject.Type}"
                           ItemsSource="{Binding Types}"
-                          DisplayMemberPath="Title"/>
+                          DisplayMemberPath="Title" SelectionChanged="cmbType_SelectionChanged"/>
                 <TextBlock Text="Подтип: "/>
-                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.SubType}"
+                <ComboBox Name="cmbSubType" Width="300" SelectedItem="{Binding InventoryObject.SubType}"
                           ItemsSource="{Binding SubTypes}"
                           DisplayMemberPath="Title"/>
                 <TextBlock Text="Срок годности: "/>
@@ -84,7 +84,7 @@
                 <TextBlock Text="Дата акта: "/>
                 <DatePicker Width="300" DisplayDate="2022-01-01" SelectedDate="{Binding CurrentStatus.Date}"/>
                 <TextBlock Text="Цена: "/>
-                <TextBox Width="300" Text="{Binding InventoryObject.Amount}"/>
+                <TextBox PreviewTextInput="TextBox_PreviewTextInput" Width="300" Text="{Binding InventoryObject.Amount}"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.ColumnSpan="2"

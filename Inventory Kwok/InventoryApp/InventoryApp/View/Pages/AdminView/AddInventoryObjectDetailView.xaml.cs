@@ -24,7 +24,6 @@ namespace InventoryApp.View.Pages.AdminView
             InventoryObjectInentoryObjectDetails = inventoryObjectInentoryObjectDetails;
             if (InventoryObject.ID != 0)
                 txbTitleInventoryObject.Text = AppData.db.InventoryObject.FirstOrDefault(item => item.ID == InventoryObject.ID).Title;
-
             this.DataContext = this;
         }
 
@@ -32,6 +31,8 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
+                if (txbTitle.Text == "" && txbSeraiNumber.Text == "")
+                    throw new Exception("Внимание! Заполните поля!");
                 if (selectedItem == null)
                 {
                     if (AppData.db.InventoryObjectInentoryObjectDetails.Count(item => item.InventoryObjectDetails.SeriaNumber == txbSeraiNumber.Text) > 0)

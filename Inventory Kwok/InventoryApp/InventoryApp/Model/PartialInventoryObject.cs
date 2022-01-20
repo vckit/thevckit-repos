@@ -15,5 +15,17 @@ namespace InventoryApp.Model
                 return $"{Title}, {Amount} руб., Тип: {Type.Title} Номер: {InventoryNumber}";
             }
         }
+
+        public string AllData
+        {
+            get
+            {
+                return CommissioningDate.ToString("d");
+            }
+            set
+            {
+                value = CommissioningDate.ToString("d");
+            }
+        }
     }
 }

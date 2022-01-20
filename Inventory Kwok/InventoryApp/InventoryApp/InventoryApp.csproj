@@ -68,9 +68,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\ArhiveInventoryObject.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\Cabinet.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -110,13 +107,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\PartialEmployee.cs" />
     <Compile Include="Model\PartialInventoryObject.cs" />
     <Compile Include="Model\PartialInventoryObjectDetails.cs" />
     <Compile Include="Model\PartialUser.cs" />
-    <Compile Include="Model\Position.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -144,8 +137,11 @@
     <Compile Include="View\Pages\AdminView\AddUserPageView.xaml.cs">
       <DependentUpon>AddUserPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\ArchiveWindow.xaml.cs">
-      <DependentUpon>ArchiveWindow.xaml</DependentUpon>
+    <Compile Include="View\Pages\AdminView\EmployeePageView.xaml.cs">
+      <DependentUpon>EmployeePageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\AdminView\TypesPageView.xaml.cs">
+      <DependentUpon>TypesPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\SetCabinetWindow.xaml.cs">
       <DependentUpon>SetCabinetWindow.xaml</DependentUpon>
@@ -165,15 +161,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\AdminView\EmployeePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminView\TypesPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\AdminView\ViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\UserView\ViewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Windows\ArchiveWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

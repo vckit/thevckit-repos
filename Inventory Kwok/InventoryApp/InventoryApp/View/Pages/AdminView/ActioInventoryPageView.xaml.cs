@@ -55,7 +55,7 @@ namespace InventoryApp.View.Pages.AdminView
                     }
 
                 }
-                if(file.FileName != "")
+                if (file.FileName != "")
                     InventoryObject.DocumentationPath = file.FileName;
                 InventoryObject.LifeTime = int.Parse(cmbLifeTime.Text);
                 AppData.db.SaveChanges();
@@ -78,6 +78,17 @@ namespace InventoryApp.View.Pages.AdminView
             {
                 txbPath.Text = file.FileName;
             }
+        }
+
+        private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = "0123456789,".IndexOf(e.Text) > 0;
+        }
+
+
+        private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -29,7 +29,7 @@ namespace InventoryApp.View.Pages.AdminView
         // Добавление нового объекта
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ActioInventoryPageView (new InventoryObject(), new CurrentStatus(), new Invoce()));
+            NavigationService.Navigate(new ActioInventoryPageView(new InventoryObject(), new CurrentStatus(), new Invoce()));
         }
 
         // Редактирование выбранного объекта
@@ -40,23 +40,36 @@ namespace InventoryApp.View.Pages.AdminView
             {
                 var selectedCurrentStatus = AppData.db.CurrentStatus.FirstOrDefault(item => item.ID == selectedInventoryObject.IDCurrentStatus);
                 var selectedInvoce = AppData.db.Invoce.FirstOrDefault(item => item.ID == selectedInventoryObject.IDInvoce);
-                NavigationService.Navigate(new ActioInventoryPageView(selectedInventoryObject,selectedCurrentStatus, selectedInvoce));
+                NavigationService.Navigate(new ActioInventoryPageView(selectedInventoryObject, selectedCurrentStatus, selectedInvoce));
             }
         }
 
         // Удаление объекта из базы данных
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (InventoryObject)DataList.SelectedItem;
-            if (selectedItem != null)
+            try
             {
-                if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                var selectedItem = (InventoryObject)DataList.SelectedItem;
+                if (selectedItem != null)
                 {
-                    AppData.db.InventoryObject.Remove(selectedItem);
-                    AppData.db.SaveChanges();
-                    Page_Loaded(null, null);
-                    MessageBox.Show("ДАННЫЕ БЫЛИ УСПЕШНО УДАЛЕНЫ ИЗ БАЗЫ ДАННЫХ.", "УДАЛЕНИЕ ПРОШЛО УСПЕШНО!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (selectedItem.CommissioningDate.Year + selectedItem.LifeTime < DateTime.Now.Year)
+                    {
+
+                        if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                        {
+                            AppData.db.InventoryObject.Remove(selectedItem);
+                            AppData.db.SaveChanges();
+                            Page_Loaded(null, null);
+                            MessageBox.Show("ДАННЫЕ БЫЛИ УСПЕШНО УДАЛЕНЫ ИЗ БАЗЫ ДАННЫХ.", "УДАЛЕНИЕ ПРОШЛО УСПЕШНО!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                        throw new Exception("Списать нельзя, срок годности ещё не вышел!");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -73,8 +86,11 @@ namespace InventoryApp.View.Pages.AdminView
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
-            item.Employe.FirstName.Contains(txbSearch.Text) || item.Employe.LastName.Contains(txbSearch.Text) ||
-            item.Employe.Patronymic.Contains(txbSearch.Text)).ToList();
+            item.Employe.FIO.Contains(txbSearch.Text) ||
+            item.InventoryNumber.Contains(txbSearch.Text) ||
+            item.Type.Title.Contains(txbSearch.Text) ||
+            item.SubType.Title.Contains(txbSearch.Text) || 
+            item.CurrentStatus.Status.Title.Contains(txbSearch.Text)).ToList();
         }
 
         // Распечатать
@@ -97,10 +113,10 @@ namespace InventoryApp.View.Pages.AdminView
                 table.Cell(1, 5).Range.Text = "Возможность списания";
                 table.Cell(1, 6).Range.Text = "Тип";
                 table.Cell(1, 7).Range.Text = "Подтип";
-                table.Cell(1, 8).Range.Text = "Комплектность - наименование)";
-                table.Cell(1, 9).Range.Text = "Комплектность – серийный номер";
+                table.Cell(1, 8).Range.Text = "Наименование)";
+                table.Cell(1, 9).Range.Text = "Серийный номер";
                 table.Cell(1, 10).Range.Text = "Документация";
-                table.Cell(1, 11).Range.Text = "Состояние списания";
+                table.Cell(1, 11).Range.Text = "Состояние";
                 table.Cell(1, 12).Range.Text = "Номер акта";
                 table.Cell(1, 13).Range.Text = "Дата акта";
                 table.Cell(1, 14).Range.Text = "Ответственный";
@@ -149,21 +165,13 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
-
-        // Посмотреть Архив
-        private void buttonArchiveView_Click(object sender, RoutedEventArgs e)
-        {
-            ArchiveWindow archive = new ArchiveWindow();
-            archive.ShowDialog();
-        }
-
         private void buttonAddInventoryObjectDetails_Click(object sender, RoutedEventArgs e)
         {
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
             if (selectedInventoryObject != null)
             {
                 var selectedInventoryObjectInentoryObjectDetails = AppData.db.InventoryObjectInentoryObjectDetails.FirstOrDefault(item => item.IDInventoryObject == selectedInventoryObject.ID);
-                if(selectedInventoryObjectInentoryObjectDetails != null)
+                if (selectedInventoryObjectInentoryObjectDetails != null)
                 {
                     NavigationService.Navigate(new AddInventoryObjectDetailView(new InventoryObjectDetails(), selectedInventoryObject, selectedInventoryObjectInentoryObjectDetails));
                 }
@@ -172,12 +180,22 @@ namespace InventoryApp.View.Pages.AdminView
                     NavigationService.Navigate(new AddInventoryObjectDetailView(new InventoryObjectDetails(), selectedInventoryObject, new InventoryObjectInentoryObjectDetails()));
                 }
             }
-            
+
         }
 
         private void buttonAddUser_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddUserPageView());
+        }
+
+        private void buttonEmployeeAdd_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EmployeePageView());
+        }
+
+        private void buttonTypes_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TypesPageView());
         }
     }
 }

@@ -43,7 +43,6 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\ActioInventoryPageView.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\ViewPage.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\UserView\ViewPage.g.cs
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\ArchiveWindow.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\AuthorizationWindow.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\MainWindow.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\SetCabinetWindow.g.cs
@@ -55,7 +54,6 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\ActioInventoryPageView.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\ViewPage.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\UserView\ViewPage.baml
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\ArchiveWindow.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\AuthorizationWindow.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\MainWindow.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Windows\SetCabinetWindow.baml
@@ -72,3 +70,7 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\AddInventoryObjectDetailView.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\AddUserPageView.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\AddUserPageView.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\EmployeePageView.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\EmployeePageView.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\TypesPageView.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\TypesPageView.baml

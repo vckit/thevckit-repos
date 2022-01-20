@@ -25,6 +25,8 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
+                if (txbUsername.Text == "" && txbPassword.Text == "")
+                    throw new Exception("Внимание! Заполните все поля!");
                 if (SelectedUser == null)
                 {
                     if (AppData.db.User.Count(item => item.Username == txbUsername.Text) > 0)
@@ -49,7 +51,7 @@ namespace InventoryApp.View.Pages.AdminView
                 }
                 AppData.db.SaveChanges();
                 Page_Loaded(null, null);
-                MessageBox.Show("Успешно!");
+                MessageBox.Show("Данные успешно добавлены в базу данных!", "Сохранено", MessageBoxButton.OK, MessageBoxImage.Information);
                 Clear();
             }
             catch (Exception ex)

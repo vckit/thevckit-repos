@@ -21,12 +21,9 @@ namespace InventoryApp.Model
         }
     
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Patronymic { get; set; }
-        public int IDPosition { get; set; }
+        public string FIO { get; set; }
+        public string Position { get; set; }
     
-        public virtual Position Position { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InventoryObject> InventoryObject { get; set; }
     }

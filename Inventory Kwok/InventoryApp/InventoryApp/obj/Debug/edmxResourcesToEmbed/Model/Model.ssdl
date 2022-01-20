@@ -1,24 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbinventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="ArhiveInventoryObject">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="InventoryNumber" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="CommissioningDate" Type="date" Nullable="false" />
-    <Property Name="DocumentationPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
-    <Property Name="IDType" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="IDSubType" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="LifeTime" Type="int" Nullable="false" />
-    <Property Name="IDInvoce" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="IDCurrentStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Amount" Type="decimal" Precision="13" Scale="2" Nullable="false" />
-    <Property Name="IDEmployee" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="IDInventoryObjectDetail" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Date" Type="date" Nullable="false" />
-  </EntityType>
   <EntityType Name="Cabinet">
     <Key>
       <PropertyRef Name="ID" />
@@ -49,10 +30,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IDPosition" Type="int" Nullable="false" />
+    <Property Name="FIO" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="InventoryObject">
     <Key>
@@ -95,13 +74,6 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Number" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Position">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -169,18 +141,6 @@
       </Principal>
       <Dependent Role="CurrentStatus">
         <PropertyRef Name="IDStatus" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Employe_Position">
-    <End Role="Position" Type="Self.Position" Multiplicity="1" />
-    <End Role="Employe" Type="Self.Employe" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Position">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Employe">
-        <PropertyRef Name="IDPosition" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -316,7 +276,6 @@
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="dbinventoryModelStoreContainer">
-    <EntitySet Name="ArhiveInventoryObject" EntityType="Self.ArhiveInventoryObject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cabinet" EntityType="Self.Cabinet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CabinetInventoryObject" EntityType="Self.CabinetInventoryObject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CurrentStatus" EntityType="Self.CurrentStatus" Schema="dbo" store:Type="Tables" />
@@ -325,7 +284,6 @@
     <EntitySet Name="InventoryObjectDetails" EntityType="Self.InventoryObjectDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObjectInentoryObjectDetails" EntityType="Self.InventoryObjectInentoryObjectDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Invoce" EntityType="Self.Invoce" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubType" EntityType="Self.SubType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
@@ -341,10 +299,6 @@
     <AssociationSet Name="FK_CurrentStatus_Status" Association="Self.FK_CurrentStatus_Status">
       <End Role="Status" EntitySet="Status" />
       <End Role="CurrentStatus" EntitySet="CurrentStatus" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Employe_Position" Association="Self.FK_Employe_Position">
-      <End Role="Position" EntitySet="Position" />
-      <End Role="Employe" EntitySet="Employe" />
     </AssociationSet>
     <AssociationSet Name="FK_InventoryObject_CurrentStatus" Association="Self.FK_InventoryObject_CurrentStatus">
       <End Role="CurrentStatus" EntitySet="CurrentStatus" />
