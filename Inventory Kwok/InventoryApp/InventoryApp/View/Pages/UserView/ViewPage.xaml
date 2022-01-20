@@ -52,17 +52,17 @@
                       ColumnWidth="*"
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="№" Binding="{Binding InventoryNumber}"/>
                     <DataGridTextColumn Header="Дата ввода" Binding="{Binding CommissioningDate}"/>
                     <DataGridTextColumn Header="Срок" Binding="{Binding LifeTime}"/>
-                    <DataGridTextColumn Header="Тип" Binding="{Binding CategoryId}"/>
-                    <DataGridTextColumn Header="Под тип" Binding="{Binding SubCategory.Name}"/>
-                    <DataGridTextColumn Header="Документ" Binding="{Binding DocumentPath}"/>
-                    <DataGridTextColumn Header="Состояние" Binding="{Binding StatusCurrent.Status.Name}"/>
-                    <DataGridTextColumn Header="Ответственный" Binding="{Binding Employee.FIO}"/>
+                    <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
+                    <DataGridTextColumn Header="Под тип" Binding="{Binding SubType.Title}"/>
+                    <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
+                    <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
+                    <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
                     <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Расположение" Binding="{Binding InvoiceId}"/>
+                    <DataGridTextColumn Header="Расположение" Binding="{Binding Invoce.Number}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

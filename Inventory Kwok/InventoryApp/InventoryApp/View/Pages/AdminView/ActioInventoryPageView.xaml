@@ -21,8 +21,8 @@
                 <TextBox Width="300" Text="{Binding InventoryObject.Title}"/>
                 <TextBlock Text="Номер: "/>
                 <TextBox Width="300" Text="{Binding InventoryObject.InventoryNumber}"/>
-                <TextBlock Text="Дата списания: "/>
-                <DatePicker Width="300" SelectedDate="{Binding InventoryObject.CommissioningDate}"/>
+                <TextBlock Text="Дата ввода в эксплуатацию: "/>
+                <DatePicker Width="300" SelectedDate="{Binding InventoryObject.CommissioningDate}" DisplayDate="2022-01-01"/>
                 <TextBlock Text="Тип: "/>
                 <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Type}"
                           ItemsSource="{Binding Types}"
@@ -32,15 +32,34 @@
                           ItemsSource="{Binding SubTypes}"
                           DisplayMemberPath="Title"/>
                 <TextBlock Text="Срок годности: "/>
-                <TextBox Width="300" Text="{Binding InventoryObject.LifeTime}"/>
+                <ComboBox Width="300" Name="cmbLifeTime">
+                    <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBoxItem>2</ComboBoxItem>
+                    <ComboBoxItem>3</ComboBoxItem>
+                    <ComboBoxItem>4</ComboBoxItem>
+                    <ComboBoxItem>5</ComboBoxItem>
+                    <ComboBoxItem>6</ComboBoxItem>
+                    <ComboBoxItem>7</ComboBoxItem>
+                    <ComboBoxItem>8</ComboBoxItem>
+                    <ComboBoxItem>9</ComboBoxItem>
+                    <ComboBoxItem>10</ComboBoxItem>
+                    <ComboBoxItem>11</ComboBoxItem>
+                    <ComboBoxItem>12</ComboBoxItem>
+                    <ComboBoxItem>13</ComboBoxItem>
+                    <ComboBoxItem>14</ComboBoxItem>
+                    <ComboBoxItem>15</ComboBoxItem>
+                    <ComboBoxItem>16</ComboBoxItem>
+                    <ComboBoxItem>17</ComboBoxItem>
+                    <ComboBoxItem>18</ComboBoxItem>
+                    <ComboBoxItem>19</ComboBoxItem>
+                    <ComboBoxItem>20</ComboBoxItem>
+                    <ComboBoxItem>21</ComboBoxItem>
+                    <ComboBoxItem>22</ComboBoxItem>
+                </ComboBox>
                 <TextBlock Text="Номер расположения: "/>
                 <TextBox Width="300" Text="{Binding Invoce.Number}"/>
                 <TextBlock Text="Дата расположения: "/>
-                <DatePicker Width="300" SelectedDate="{Binding Invoce.Date}"/>
-                <TextBlock Text="Серийный номер деталя: "/>
-                <TextBox Width="300" Text="{Binding InventoryObjectDetails.SeriaNumber}"/>
-                <TextBlock Text="Наименование деталя: "/>
-                <TextBox Width="300" Text="{Binding InventoryObjectDetails.Title}"/>
+                <DatePicker Width="300" SelectedDate="{Binding Invoce.Date}" DisplayDate="2022-01-01"/>
             </StackPanel>
         </Grid>
 
@@ -63,13 +82,15 @@
                 <TextBlock Text="Номер акта: "/>
                 <TextBox Width="300" Text="{Binding CurrentStatus.NumberAct}"/>
                 <TextBlock Text="Дата акта: "/>
-                <DatePicker Width="300" SelectedDate="{Binding CurrentStatus.Date}"/>
+                <DatePicker Width="300" DisplayDate="2022-01-01" SelectedDate="{Binding CurrentStatus.Date}"/>
                 <TextBlock Text="Цена: "/>
                 <TextBox Width="300" Text="{Binding InventoryObject.Amount}"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.ColumnSpan="2"
                     VerticalAlignment="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
                     Margin="0,0,0,30">
             <Button Content="Сохранить"
                     Width="300"

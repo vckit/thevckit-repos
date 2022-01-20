@@ -29,7 +29,7 @@ namespace InventoryApp.View.Pages.AdminView
         // Добавление нового объекта
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ActioInventoryPageView(new Model.InventoryObject(), new Model.InventoryObjectDetails(), new Model.CurrentStatus(), new Model.Invoce()));
+            NavigationService.Navigate(new ActioInventoryPageView (new InventoryObject(), new CurrentStatus(), new Invoce()));
         }
 
         // Редактирование выбранного объекта
@@ -38,10 +38,9 @@ namespace InventoryApp.View.Pages.AdminView
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
             if (selectedInventoryObject != null)
             {
-                var selectedInventoryObjectDetails = AppData.db.InventoryObjectDetails.FirstOrDefault(item => item.ID == selectedInventoryObject.IDInventoryObjectDetail);
                 var selectedCurrentStatus = AppData.db.CurrentStatus.FirstOrDefault(item => item.ID == selectedInventoryObject.IDCurrentStatus);
                 var selectedInvoce = AppData.db.Invoce.FirstOrDefault(item => item.ID == selectedInventoryObject.IDInvoce);
-                NavigationService.Navigate(new ActioInventoryPageView(selectedInventoryObject, selectedInventoryObjectDetails, selectedCurrentStatus, selectedInvoce));
+                NavigationService.Navigate(new ActioInventoryPageView(selectedInventoryObject,selectedCurrentStatus, selectedInvoce));
             }
         }
 
@@ -53,21 +52,6 @@ namespace InventoryApp.View.Pages.AdminView
             {
                 if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                 {
-                    ArhiveInventoryObject arhiveInventoryObject = new ArhiveInventoryObject();
-                    arhiveInventoryObject.ID = selectedItem.ID;
-                    arhiveInventoryObject.Title = selectedItem.Title;
-                    arhiveInventoryObject.InventoryNumber = selectedItem.InventoryNumber;
-                    arhiveInventoryObject.DocumentationPath = selectedItem.DocumentationPath;
-                    arhiveInventoryObject.IDType = selectedItem.Type.Title;
-                    arhiveInventoryObject.IDSubType = selectedItem.SubType.Title;
-                    arhiveInventoryObject.LifeTime = selectedItem.LifeTime;
-                    arhiveInventoryObject.IDInvoce = selectedItem.Invoce.Number;
-                    arhiveInventoryObject.IDCurrentStatus = selectedItem.CurrentStatus.Status.Title;
-                    arhiveInventoryObject.Amount = selectedItem.Amount;
-                    arhiveInventoryObject.IDEmployee = selectedItem.Employe.FIO;
-                    arhiveInventoryObject.IDInventoryObjectDetail = selectedItem.InventoryObjectDetails.GetTitle;
-                    arhiveInventoryObject.Date = DateTime.Now;
-                    AppData.db.ArhiveInventoryObject.Add(arhiveInventoryObject);
                     AppData.db.InventoryObject.Remove(selectedItem);
                     AppData.db.SaveChanges();
                     Page_Loaded(null, null);
@@ -88,8 +72,8 @@ namespace InventoryApp.View.Pages.AdminView
         // Поиск данных
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) || 
-            item.Employe.FirstName.Contains(txbSearch.Text) || item.Employe.LastName.Contains(txbSearch.Text) || 
+            DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
+            item.Employe.FirstName.Contains(txbSearch.Text) || item.Employe.LastName.Contains(txbSearch.Text) ||
             item.Employe.Patronymic.Contains(txbSearch.Text)).ToList();
         }
 
@@ -103,8 +87,8 @@ namespace InventoryApp.View.Pages.AdminView
                 var document = word.Documents.Add();
                 var paragrah = word.ActiveDocument.Paragraphs.Add();
                 var tableRange = paragrah.Range;
-                var inventoryObjectsList = AppData.db.InventoryObject.ToList();
-                var table = document.Tables.Add(tableRange, inventoryObjectsList.Count, 15);
+                var inventoryObjectInventoryObjectDetailsList = AppData.db.InventoryObjectInentoryObjectDetails.ToList();
+                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 15);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Наименование";
                 table.Cell(1, 2).Range.Text = "Инвентарный номер";
@@ -123,23 +107,23 @@ namespace InventoryApp.View.Pages.AdminView
                 table.Cell(1, 15).Range.Text = "Цена";
 
                 int i = 2;
-                foreach (var item in inventoryObjectsList)
+                foreach (var item in inventoryObjectInventoryObjectDetailsList)
                 {
-                    table.Cell(i, 1).Range.Text = item.Title;
-                    table.Cell(i, 2).Range.Text = item.InventoryNumber;
-                    table.Cell(i, 3).Range.Text = item.CommissioningDate.ToLongTimeString();
-                    table.Cell(i, 4).Range.Text = item.LifeTime.ToString();
+                    table.Cell(i, 1).Range.Text = item.InventoryObject.Title;
+                    table.Cell(i, 2).Range.Text = item.InventoryObject.InventoryNumber;
+                    table.Cell(i, 3).Range.Text = item.InventoryObject.CommissioningDate.ToLongTimeString();
+                    table.Cell(i, 4).Range.Text = item.InventoryObject.LifeTime.ToString();
                     table.Cell(i, 5).Range.Text = "ДА";
-                    table.Cell(i, 6).Range.Text = item.Type.Title;
-                    table.Cell(i, 7).Range.Text = item.SubType.Title;
+                    table.Cell(i, 6).Range.Text = item.InventoryObject.Type.Title;
+                    table.Cell(i, 7).Range.Text = item.InventoryObject.SubType.Title;
                     table.Cell(i, 8).Range.Text = item.InventoryObjectDetails.Title;
                     table.Cell(i, 9).Range.Text = item.InventoryObjectDetails.SeriaNumber;
-                    table.Cell(i, 10).Range.Text = item.DocumentationPath;
-                    table.Cell(i, 11).Range.Text = item.CurrentStatus.Status.Title;
-                    table.Cell(i, 12).Range.Text = item.CurrentStatus.NumberAct;
-                    table.Cell(i, 13).Range.Text = item.CurrentStatus.Date.ToShortDateString();
-                    table.Cell(i, 14).Range.Text = item.Employe.FIO;
-                    table.Cell(i, 15).Range.Text = item.Amount.ToString();
+                    table.Cell(i, 10).Range.Text = item.InventoryObject.DocumentationPath;
+                    table.Cell(i, 11).Range.Text = item.InventoryObject.CurrentStatus.Status.Title;
+                    table.Cell(i, 12).Range.Text = item.InventoryObject.CurrentStatus.NumberAct;
+                    table.Cell(i, 13).Range.Text = item.InventoryObject.CurrentStatus.Date.ToString();
+                    table.Cell(i, 14).Range.Text = item.InventoryObject.Employe.FIO;
+                    table.Cell(i, 15).Range.Text = item.InventoryObject.Amount.ToString();
                     i++;
                 }
                 document.SaveAs2($"{Environment.CurrentDirectory}\\ведомость.docx");
@@ -158,7 +142,7 @@ namespace InventoryApp.View.Pages.AdminView
         private async void buttonSetCabinet_Click(object sender, RoutedEventArgs e)
         {
             var selectedItem = (InventoryObject)DataList.SelectedItem;
-            if(selectedItem != null)
+            if (selectedItem != null)
             {
                 SetCabinetWindow set = new SetCabinetWindow(new CabinetInventoryObject(), selectedItem);
                 await set.Dispatcher.InvokeAsync(() => set.ShowDialog());
@@ -171,6 +155,29 @@ namespace InventoryApp.View.Pages.AdminView
         {
             ArchiveWindow archive = new ArchiveWindow();
             archive.ShowDialog();
+        }
+
+        private void buttonAddInventoryObjectDetails_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
+            if (selectedInventoryObject != null)
+            {
+                var selectedInventoryObjectInentoryObjectDetails = AppData.db.InventoryObjectInentoryObjectDetails.FirstOrDefault(item => item.IDInventoryObject == selectedInventoryObject.ID);
+                if(selectedInventoryObjectInentoryObjectDetails != null)
+                {
+                    NavigationService.Navigate(new AddInventoryObjectDetailView(new InventoryObjectDetails(), selectedInventoryObject, selectedInventoryObjectInentoryObjectDetails));
+                }
+                else
+                {
+                    NavigationService.Navigate(new AddInventoryObjectDetailView(new InventoryObjectDetails(), selectedInventoryObject, new InventoryObjectInentoryObjectDetails()));
+                }
+            }
+            
+        }
+
+        private void buttonAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddUserPageView());
         }
     }
 }

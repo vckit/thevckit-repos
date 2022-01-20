@@ -18,6 +18,7 @@ namespace InventoryApp.Model
         public InventoryObject()
         {
             this.CabinetInventoryObject = new HashSet<CabinetInventoryObject>();
+            this.InventoryObjectInentoryObjectDetails = new HashSet<InventoryObjectInentoryObjectDetails>();
         }
     
         public int ID { get; set; }
@@ -38,9 +39,10 @@ namespace InventoryApp.Model
         public virtual ICollection<CabinetInventoryObject> CabinetInventoryObject { get; set; }
         public virtual CurrentStatus CurrentStatus { get; set; }
         public virtual Employe Employe { get; set; }
-        public virtual InventoryObjectDetails InventoryObjectDetails { get; set; }
         public virtual Invoce Invoce { get; set; }
         public virtual SubType SubType { get; set; }
         public virtual Type Type { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<InventoryObjectInentoryObjectDetails> InventoryObjectInentoryObjectDetails { get; set; }
     }
 }

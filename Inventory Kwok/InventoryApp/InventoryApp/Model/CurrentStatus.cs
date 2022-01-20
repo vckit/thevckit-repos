@@ -23,7 +23,7 @@ namespace InventoryApp.Model
         public int ID { get; set; }
         public int IDStatus { get; set; }
         public string NumberAct { get; set; }
-        public System.DateTime Date { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

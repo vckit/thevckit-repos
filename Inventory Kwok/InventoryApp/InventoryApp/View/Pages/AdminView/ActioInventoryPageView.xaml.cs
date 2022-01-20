@@ -15,7 +15,6 @@ namespace InventoryApp.View.Pages.AdminView
     public partial class ActioInventoryPageView : Page
     {
         public InventoryObject InventoryObject { get; set; }
-        public InventoryObjectDetails InventoryObjectDetails { get; set; }
         public CurrentStatus CurrentStatus { get; set; }
         public Invoce Invoce { get; set; }
         public List<Employe> Employees { get; set; }
@@ -23,18 +22,18 @@ namespace InventoryApp.View.Pages.AdminView
         public List<SubType> SubTypes { get; set; }
         public List<Status> Statuses { get; set; }
 
-        public ActioInventoryPageView(InventoryObject inventoryObject, InventoryObjectDetails inventoryObjectDetails, CurrentStatus currentStatus, Invoce invoce)
+        public ActioInventoryPageView(InventoryObject inventoryObject, CurrentStatus currentStatus, Invoce invoce)
         {
             InitializeComponent();
             InventoryObject = inventoryObject;
             CurrentStatus = currentStatus;
             Invoce = invoce;
-            InventoryObjectDetails = inventoryObjectDetails;
             Employees = AppData.db.Employe.ToList();
             Types = AppData.db.Type.ToList();
             SubTypes = AppData.db.SubType.ToList();
             Statuses = AppData.db.Status.ToList();
             txbPath.Text = inventoryObject.DocumentationPath;
+            cmbLifeTime.Text = inventoryObject.LifeTime.ToString();
             this.DataContext = this;
         }
 
@@ -42,22 +41,28 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
-
-                if (InventoryObject.ID == 0 && InventoryObjectDetails.ID == 0 & CurrentStatus.ID == 0 && Invoce.ID == 0)
+                if (InventoryObject.ID == 0 && CurrentStatus.ID == 0 && Invoce.ID == 0)
                 {
                     AppData.db.CurrentStatus.Add(CurrentStatus);
-                    AppData.db.InventoryObjectDetails.Add(InventoryObjectDetails);
                     AppData.db.Invoce.Add(Invoce);
                     InventoryObject.IDCurrentStatus = CurrentStatus.ID;
                     InventoryObject.IDInvoce = Invoce.ID;
-                    InventoryObject.IDInventoryObjectDetail = InventoryObjectDetails.ID;
-                    InventoryObject.DocumentationPath = file.FileName;
                     AppData.db.InventoryObject.Add(InventoryObject);
+
+                    if (AppData.db.InventoryObject.Count(item => item.InventoryNumber == InventoryObject.InventoryNumber) > 0)
+                    {
+                        throw new Exception($"Объект с интерьерным номером {InventoryObject.InventoryNumber} уже существует в базе данных");
+                    }
+
                 }
+                if(file.FileName != "")
+                    InventoryObject.DocumentationPath = file.FileName;
+                InventoryObject.LifeTime = int.Parse(cmbLifeTime.Text);
                 AppData.db.SaveChanges();
                 MessageBox.Show("ДАННЫЕ ДОБАВЛЕНЫ В БАЗУ ДАННЫХ.", "УСПЕШНО СОХРАНЕНО!", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.GoBack();
                 GC.Collect();
+
             }
             catch (Exception ex)
             {

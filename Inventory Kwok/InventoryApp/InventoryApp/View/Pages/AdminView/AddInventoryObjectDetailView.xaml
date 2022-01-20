@@ -1,0 +1,72 @@
+﻿<Page x:Class="InventoryApp.View.Pages.AdminView.AddInventoryObjectDetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
+      mc:Ignorable="d" FontSize="15" Loaded="Page_Loaded"
+      d:DesignHeight="450" d:DesignWidth="1100"
+      Title="AddInventoryObjectDetailView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Название объекта: "/>
+            <TextBlock Width="300" Name="txbTitleInventoryObject"/>
+            <TextBlock Text="Серийный номер деталя: "/>
+            <TextBox Width="300" Name="txbSeraiNumber"/>
+            <TextBlock Text="Наименование деталя: "/>
+            <TextBox Width="300" Name="txbTitle" />
+            <Button Content="Сохранить"
+                    Click="buttonSave_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Name="ExistInventoryObjectDetails"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Name="txbStatus" Foreground="Red"/>
+            <ListView Name="ListInventoryObjectDetails"
+                      Margin="0,0,10,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding InventoryObjectDetails.Title}" Width="200"/>
+                        <GridViewColumn Header="Серийный номер" DisplayMemberBinding="{Binding InventoryObjectDetails.SeriaNumber}" Width="200"/>
+                        <GridViewColumn Header="Редактировать" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <Button Content="Выбрать"
+                                                Width="130"
+                                                Click="buttonSelected_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Button Content="Удалить"
+                                                Width="130"
+                                                Margin="5,0,0,0"
+                                                Click="buttonDelete_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

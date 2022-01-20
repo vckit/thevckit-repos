@@ -89,6 +89,9 @@
     <Compile Include="Model\InventoryObjectDetails.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\InventoryObjectInentoryObjectDetails.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Invoce.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -110,10 +113,8 @@
     <Compile Include="Model\PartialEmployee.cs" />
     <Compile Include="Model\PartialInventoryObject.cs" />
     <Compile Include="Model\PartialInventoryObjectDetails.cs" />
+    <Compile Include="Model\PartialUser.cs" />
     <Compile Include="Model\Position.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sp_helpdiagramdefinition_Result.cs">
@@ -137,6 +138,12 @@
     <Compile Include="View\Pages\AdminView\ActioInventoryPageView.xaml.cs">
       <DependentUpon>ActioInventoryPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\AdminView\AddInventoryObjectDetailView.xaml.cs">
+      <DependentUpon>AddInventoryObjectDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\AdminView\AddUserPageView.xaml.cs">
+      <DependentUpon>AddUserPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\ArchiveWindow.xaml.cs">
       <DependentUpon>ArchiveWindow.xaml</DependentUpon>
     </Compile>
@@ -147,6 +154,14 @@
       <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Pages\AdminView\ActioInventoryPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminView\AddInventoryObjectDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminView\AddUserPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

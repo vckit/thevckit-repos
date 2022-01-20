@@ -112,6 +112,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="InventoryObjectInentoryObjectDetails">
+      <EntityTypeMapping TypeName="dbinventoryModel.InventoryObjectInentoryObjectDetails">
+        <MappingFragment StoreEntitySet="InventoryObjectInentoryObjectDetails">
+          <ScalarProperty Name="IDInventoryObjectDetails" ColumnName="IDInventoryObjectDetails" />
+          <ScalarProperty Name="IDInventoryObject" ColumnName="IDInventoryObject" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Invoce">
       <EntityTypeMapping TypeName="dbinventoryModel.Invoce">
         <MappingFragment StoreEntitySet="Invoce">
@@ -126,14 +135,6 @@
         <MappingFragment StoreEntitySet="Position">
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Role">
-      <EntityTypeMapping TypeName="dbinventoryModel.Role">
-        <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -165,7 +166,7 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="dbinventoryModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="ID" ColumnName="ID" />

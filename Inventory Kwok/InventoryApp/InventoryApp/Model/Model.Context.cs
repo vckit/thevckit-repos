@@ -34,9 +34,9 @@ namespace InventoryApp.Model
         public virtual DbSet<Employe> Employe { get; set; }
         public virtual DbSet<InventoryObject> InventoryObject { get; set; }
         public virtual DbSet<InventoryObjectDetails> InventoryObjectDetails { get; set; }
+        public virtual DbSet<InventoryObjectInentoryObjectDetails> InventoryObjectInentoryObjectDetails { get; set; }
         public virtual DbSet<Invoce> Invoce { get; set; }
         public virtual DbSet<Position> Position { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<SubType> SubType { get; set; }
         public virtual DbSet<Type> Type { get; set; }

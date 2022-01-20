@@ -40,13 +40,13 @@ namespace InventoryApp.View.Windows
             var currentUser = AppData.db.User.FirstOrDefault(item => item.Username == txbUsername.Text && item.Password == PasswordTxb.Password);
             if (currentUser != null)
             {
-                switch (currentUser.IDRole)
+                switch (currentUser.Role)
                 {
-                    case "a":
+                    case 1:
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
                         break;
-                    case "u":
+                    case 2:
                         UserWindow userWindow = new UserWindow();
                         userWindow.Show();
                         break;

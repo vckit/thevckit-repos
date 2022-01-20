@@ -53,11 +53,17 @@
                       AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
-                    <DataGridTextColumn Header="№" Binding="{Binding InventoryNumber}"/>
-                    <DataGridTextColumn Header="Дата ввода" Binding="{Binding CommissioningDate}"/>
-                    <DataGridTextColumn Header="Срок" Binding="{Binding LifeTime}"/>
+                    <DataGridTextColumn Header="Инвент. №" Binding="{Binding InventoryNumber}"/>
+                    <DataGridTemplateColumn Header="Дата ввода в эксплуатацию">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding CommissioningDate}" DisplayDate="2022-01-20" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Срок годности" Binding="{Binding LifeTime}"/>
                     <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
-                    <DataGridTextColumn Header="Под тип" Binding="{Binding SubType.Title}"/>
+                    <DataGridTextColumn Header="Подтип" Binding="{Binding SubType.Title}"/>
                     <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
                     <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
                     <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
@@ -87,6 +93,10 @@
                         Margin="10,0,0,0"
                         Width="200"
                         Click="buttonSetCabinet_Click"/>
+                <Button Content="Добавить комплектующие"
+                    Margin="10,0,0,0"
+                    Width="300"
+                    Click="buttonAddInventoryObjectDetails_Click"/>
 
             </StackPanel>
         </Grid>
@@ -102,6 +112,10 @@
                         Margin="10,0,0,0"
                         Width="300"
                         Click="buttonArchiveView_Click"/>
+                <Button Content="Добавить пользователя"
+                        Margin="10,0,0,0"
+                        Width="300"
+                        Click="buttonAddUser_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

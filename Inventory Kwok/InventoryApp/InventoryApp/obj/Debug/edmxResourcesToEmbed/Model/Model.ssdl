@@ -41,8 +41,8 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDStatus" Type="int" Nullable="false" />
-    <Property Name="NumberAct" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="NumberAct" Type="varchar" MaxLength="20" />
+    <Property Name="Date" Type="date" />
   </EntityType>
   <EntityType Name="Employe">
     <Key>
@@ -77,8 +77,16 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SeriaNumber" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="SeriaNumber" Type="varchar" MaxLength="30" />
     <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InventoryObjectInentoryObjectDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDInventoryObject" Type="int" Nullable="false" />
+    <Property Name="IDInventoryObjectDetails" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Invoce">
     <Key>
@@ -93,13 +101,6 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="Code" />
-    </Key>
-    <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
@@ -131,7 +132,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="IDRole" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Role" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_CabinetInventoryObject_Cabinet">
     <End Role="Cabinet" Type="Self.Cabinet" Multiplicity="1" />
@@ -207,20 +208,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InventoryObject_InventoryObjectDetails">
-    <End Role="InventoryObjectDetails" Type="Self.InventoryObjectDetails" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="InventoryObject" Type="Self.InventoryObject" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="InventoryObjectDetails">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InventoryObject">
-        <PropertyRef Name="IDInventoryObjectDetail" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_InventoryObject_Invoce">
     <End Role="Invoce" Type="Self.Invoce" Multiplicity="1" />
     <End Role="InventoryObject" Type="Self.InventoryObject" Multiplicity="*" />
@@ -257,6 +244,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_InventoryObjectInentoryObjectDetails_InventoryObject">
+    <End Role="InventoryObject" Type="Self.InventoryObject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InventoryObjectInentoryObjectDetails" Type="Self.InventoryObjectInentoryObjectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryObject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InventoryObjectInentoryObjectDetails">
+        <PropertyRef Name="IDInventoryObject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails">
+    <End Role="InventoryObjectDetails" Type="Self.InventoryObjectDetails" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InventoryObjectInentoryObjectDetails" Type="Self.InventoryObjectInentoryObjectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryObjectDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InventoryObjectInentoryObjectDetails">
+        <PropertyRef Name="IDInventoryObjectDetails" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SubType_Type">
     <End Role="Type" Type="Self.Type" Multiplicity="1" />
     <End Role="SubType" Type="Self.SubType" Multiplicity="*" />
@@ -266,18 +281,6 @@
       </Principal>
       <Dependent Role="SubType">
         <PropertyRef Name="IDType" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_User_Role">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="User" Type="Self.User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Code" />
-      </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="IDRole" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -320,9 +323,9 @@
     <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObject" EntityType="Self.InventoryObject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObjectDetails" EntityType="Self.InventoryObjectDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InventoryObjectInentoryObjectDetails" EntityType="Self.InventoryObjectInentoryObjectDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Invoce" EntityType="Self.Invoce" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SubType" EntityType="Self.SubType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
@@ -351,10 +354,6 @@
       <End Role="Employe" EntitySet="Employe" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
     </AssociationSet>
-    <AssociationSet Name="FK_InventoryObject_InventoryObjectDetails" Association="Self.FK_InventoryObject_InventoryObjectDetails">
-      <End Role="InventoryObjectDetails" EntitySet="InventoryObjectDetails" />
-      <End Role="InventoryObject" EntitySet="InventoryObject" />
-    </AssociationSet>
     <AssociationSet Name="FK_InventoryObject_Invoce" Association="Self.FK_InventoryObject_Invoce">
       <End Role="Invoce" EntitySet="Invoce" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
@@ -367,13 +366,17 @@
       <End Role="Type" EntitySet="Type" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
     </AssociationSet>
+    <AssociationSet Name="FK_InventoryObjectInentoryObjectDetails_InventoryObject" Association="Self.FK_InventoryObjectInentoryObjectDetails_InventoryObject">
+      <End Role="InventoryObject" EntitySet="InventoryObject" />
+      <End Role="InventoryObjectInentoryObjectDetails" EntitySet="InventoryObjectInentoryObjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails" Association="Self.FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails">
+      <End Role="InventoryObjectDetails" EntitySet="InventoryObjectDetails" />
+      <End Role="InventoryObjectInentoryObjectDetails" EntitySet="InventoryObjectInentoryObjectDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_SubType_Type" Association="Self.FK_SubType_Type">
       <End Role="Type" EntitySet="Type" />
       <End Role="SubType" EntitySet="SubType" />
-    </AssociationSet>
-    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

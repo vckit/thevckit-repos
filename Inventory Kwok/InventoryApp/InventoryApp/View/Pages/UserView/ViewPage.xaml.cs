@@ -22,14 +22,13 @@ namespace InventoryApp.View.Pages.UserView
         private void buttonPrint_Click(object sender, RoutedEventArgs e)
         {
             var word = new Word.Application();
-
             try
             {
                 var document = word.Documents.Add();
                 var paragrah = word.ActiveDocument.Paragraphs.Add();
                 var tableRange = paragrah.Range;
-                var inventoryObjectsList = AppData.db.InventoryObject.ToList();
-                var table = document.Tables.Add(tableRange, inventoryObjectsList.Count, 15);
+                var inventoryObjectInventoryObjectDetailsList = AppData.db.InventoryObjectInentoryObjectDetails.ToList();
+                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 15);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Наименование";
                 table.Cell(1, 2).Range.Text = "Инвентарный номер";
@@ -48,23 +47,23 @@ namespace InventoryApp.View.Pages.UserView
                 table.Cell(1, 15).Range.Text = "Цена";
 
                 int i = 2;
-                foreach (var item in inventoryObjectsList)
+                foreach (var item in inventoryObjectInventoryObjectDetailsList)
                 {
-                    table.Cell(i, 1).Range.Text = item.Title;
-                    table.Cell(i, 2).Range.Text = item.InventoryNumber;
-                    table.Cell(i, 3).Range.Text = item.CommissioningDate.ToLongTimeString();
-                    table.Cell(i, 4).Range.Text = item.LifeTime.ToString();
+                    table.Cell(i, 1).Range.Text = item.InventoryObject.Title;
+                    table.Cell(i, 2).Range.Text = item.InventoryObject.InventoryNumber;
+                    table.Cell(i, 3).Range.Text = item.InventoryObject.CommissioningDate.ToLongTimeString();
+                    table.Cell(i, 4).Range.Text = item.InventoryObject.LifeTime.ToString();
                     table.Cell(i, 5).Range.Text = "ДА";
-                    table.Cell(i, 6).Range.Text = item.Type.Title;
-                    table.Cell(i, 7).Range.Text = item.SubType.Title;
+                    table.Cell(i, 6).Range.Text = item.InventoryObject.Type.Title;
+                    table.Cell(i, 7).Range.Text = item.InventoryObject.SubType.Title;
                     table.Cell(i, 8).Range.Text = item.InventoryObjectDetails.Title;
                     table.Cell(i, 9).Range.Text = item.InventoryObjectDetails.SeriaNumber;
-                    table.Cell(i, 10).Range.Text = item.DocumentationPath;
-                    table.Cell(i, 11).Range.Text = item.CurrentStatus.Status.Title;
-                    table.Cell(i, 12).Range.Text = item.CurrentStatus.NumberAct;
-                    table.Cell(i, 13).Range.Text = item.CurrentStatus.Date.ToShortDateString();
-                    table.Cell(i, 14).Range.Text = item.Employe.FIO;
-                    table.Cell(i, 15).Range.Text = item.Amount.ToString();
+                    table.Cell(i, 10).Range.Text = item.InventoryObject.DocumentationPath;
+                    table.Cell(i, 11).Range.Text = item.InventoryObject.CurrentStatus.Status.Title;
+                    table.Cell(i, 12).Range.Text = item.InventoryObject.CurrentStatus.NumberAct;
+                    table.Cell(i, 13).Range.Text = item.InventoryObject.CurrentStatus.Date.ToString();
+                    table.Cell(i, 14).Range.Text = item.InventoryObject.Employe.FIO;
+                    table.Cell(i, 15).Range.Text = item.InventoryObject.Amount.ToString();
                     i++;
                 }
                 document.SaveAs2($"{Environment.CurrentDirectory}\\ведомость.docx");

@@ -17,7 +17,7 @@ namespace InventoryApp.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InventoryObjectDetails()
         {
-            this.InventoryObject = new HashSet<InventoryObject>();
+            this.InventoryObjectInentoryObjectDetails = new HashSet<InventoryObjectInentoryObjectDetails>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace InventoryApp.Model
         public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryObject> InventoryObject { get; set; }
+        public virtual ICollection<InventoryObjectInentoryObjectDetails> InventoryObjectInentoryObjectDetails { get; set; }
     }
 }

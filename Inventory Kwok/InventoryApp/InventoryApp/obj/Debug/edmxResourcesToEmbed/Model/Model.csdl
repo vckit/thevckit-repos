@@ -38,9 +38,9 @@
     <EntitySet Name="Employe" EntityType="dbinventoryModel.Employe" />
     <EntitySet Name="InventoryObject" EntityType="dbinventoryModel.InventoryObject" />
     <EntitySet Name="InventoryObjectDetails" EntityType="dbinventoryModel.InventoryObjectDetails" />
+    <EntitySet Name="InventoryObjectInentoryObjectDetails" EntityType="dbinventoryModel.InventoryObjectInentoryObjectDetails" />
     <EntitySet Name="Invoce" EntityType="dbinventoryModel.Invoce" />
     <EntitySet Name="Position" EntityType="dbinventoryModel.Position" />
-    <EntitySet Name="Role" EntityType="dbinventoryModel.Role" />
     <EntitySet Name="Status" EntityType="dbinventoryModel.Status" />
     <EntitySet Name="SubType" EntityType="dbinventoryModel.SubType" />
     <EntitySet Name="Type" EntityType="dbinventoryModel.Type" />
@@ -69,10 +69,6 @@
       <End Role="Employe" EntitySet="Employe" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
     </AssociationSet>
-    <AssociationSet Name="FK_InventoryObject_InventoryObjectDetails" Association="dbinventoryModel.FK_InventoryObject_InventoryObjectDetails">
-      <End Role="InventoryObjectDetails" EntitySet="InventoryObjectDetails" />
-      <End Role="InventoryObject" EntitySet="InventoryObject" />
-    </AssociationSet>
     <AssociationSet Name="FK_InventoryObject_Invoce" Association="dbinventoryModel.FK_InventoryObject_Invoce">
       <End Role="Invoce" EntitySet="Invoce" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
@@ -85,9 +81,13 @@
       <End Role="Type" EntitySet="Type" />
       <End Role="InventoryObject" EntitySet="InventoryObject" />
     </AssociationSet>
-    <AssociationSet Name="FK_User_Role" Association="dbinventoryModel.FK_User_Role">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="User" EntitySet="User" />
+    <AssociationSet Name="FK_InventoryObjectInentoryObjectDetails_InventoryObject" Association="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObject">
+      <End Role="InventoryObject" EntitySet="InventoryObject" />
+      <End Role="InventoryObjectInentoryObjectDetails" EntitySet="InventoryObjectInentoryObjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails" Association="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails">
+      <End Role="InventoryObjectDetails" EntitySet="InventoryObjectDetails" />
+      <End Role="InventoryObjectInentoryObjectDetails" EntitySet="InventoryObjectInentoryObjectDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_SubType_Type" Association="dbinventoryModel.FK_SubType_Type">
       <End Role="Type" EntitySet="Type" />
@@ -149,8 +149,8 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDStatus" Type="Int32" Nullable="false" />
-    <Property Name="NumberAct" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NumberAct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Status" Relationship="dbinventoryModel.FK_CurrentStatus_Status" FromRole="CurrentStatus" ToRole="Status" />
     <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_CurrentStatus" FromRole="CurrentStatus" ToRole="InventoryObject" />
   </EntityType>
@@ -186,19 +186,29 @@
     <NavigationProperty Name="CabinetInventoryObject" Relationship="dbinventoryModel.FK_CabinetInventoryObject_InventoryObject" FromRole="InventoryObject" ToRole="CabinetInventoryObject" />
     <NavigationProperty Name="CurrentStatus" Relationship="dbinventoryModel.FK_InventoryObject_CurrentStatus" FromRole="InventoryObject" ToRole="CurrentStatus" />
     <NavigationProperty Name="Employe" Relationship="dbinventoryModel.FK_InventoryObject_Employe" FromRole="InventoryObject" ToRole="Employe" />
-    <NavigationProperty Name="InventoryObjectDetails" Relationship="dbinventoryModel.FK_InventoryObject_InventoryObjectDetails" FromRole="InventoryObject" ToRole="InventoryObjectDetails" />
     <NavigationProperty Name="Invoce" Relationship="dbinventoryModel.FK_InventoryObject_Invoce" FromRole="InventoryObject" ToRole="Invoce" />
     <NavigationProperty Name="SubType" Relationship="dbinventoryModel.FK_InventoryObject_SubType" FromRole="InventoryObject" ToRole="SubType" />
     <NavigationProperty Name="Type" Relationship="dbinventoryModel.FK_InventoryObject_Type" FromRole="InventoryObject" ToRole="Type" />
+    <NavigationProperty Name="InventoryObjectInentoryObjectDetails" Relationship="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObject" FromRole="InventoryObject" ToRole="InventoryObjectInentoryObjectDetails" />
   </EntityType>
   <EntityType Name="InventoryObjectDetails">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SeriaNumber" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SeriaNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_InventoryObjectDetails" FromRole="InventoryObjectDetails" ToRole="InventoryObject" />
+    <NavigationProperty Name="InventoryObjectInentoryObjectDetails" Relationship="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails" FromRole="InventoryObjectDetails" ToRole="InventoryObjectInentoryObjectDetails" />
+  </EntityType>
+  <EntityType Name="InventoryObjectInentoryObjectDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDInventoryObject" Type="Int32" Nullable="false" />
+    <Property Name="IDInventoryObjectDetails" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObject" FromRole="InventoryObjectInentoryObjectDetails" ToRole="InventoryObject" />
+    <NavigationProperty Name="InventoryObjectDetails" Relationship="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails" FromRole="InventoryObjectInentoryObjectDetails" ToRole="InventoryObjectDetails" />
   </EntityType>
   <EntityType Name="Invoce">
     <Key>
@@ -216,14 +226,6 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Employe" Relationship="dbinventoryModel.FK_Employe_Position" FromRole="Position" ToRole="Employe" />
-  </EntityType>
-  <EntityType Name="Role">
-    <Key>
-      <PropertyRef Name="Code" />
-    </Key>
-    <Property Name="Code" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="User" Relationship="dbinventoryModel.FK_User_Role" FromRole="Role" ToRole="User" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -259,8 +261,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IDRole" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="Role" Relationship="dbinventoryModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <Property Name="Role" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_CabinetInventoryObject_Cabinet">
     <End Type="dbinventoryModel.Cabinet" Role="Cabinet" Multiplicity="1" />
@@ -336,20 +337,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_InventoryObject_InventoryObjectDetails">
-    <End Type="dbinventoryModel.InventoryObjectDetails" Role="InventoryObjectDetails" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="dbinventoryModel.InventoryObject" Role="InventoryObject" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="InventoryObjectDetails">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="InventoryObject">
-        <PropertyRef Name="IDInventoryObjectDetail" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_InventoryObject_Invoce">
     <End Type="dbinventoryModel.Invoce" Role="Invoce" Multiplicity="1" />
     <End Type="dbinventoryModel.InventoryObject" Role="InventoryObject" Multiplicity="*" />
@@ -386,15 +373,31 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_User_Role">
-    <End Type="dbinventoryModel.Role" Role="Role" Multiplicity="1" />
-    <End Type="dbinventoryModel.User" Role="User" Multiplicity="*" />
+  <Association Name="FK_InventoryObjectInentoryObjectDetails_InventoryObject">
+    <End Type="dbinventoryModel.InventoryObject" Role="InventoryObject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="dbinventoryModel.InventoryObjectInentoryObjectDetails" Role="InventoryObjectInentoryObjectDetails" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Code" />
+      <Principal Role="InventoryObject">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="User">
-        <PropertyRef Name="IDRole" />
+      <Dependent Role="InventoryObjectInentoryObjectDetails">
+        <PropertyRef Name="IDInventoryObject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails">
+    <End Type="dbinventoryModel.InventoryObjectDetails" Role="InventoryObjectDetails" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="dbinventoryModel.InventoryObjectInentoryObjectDetails" Role="InventoryObjectInentoryObjectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryObjectDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="InventoryObjectInentoryObjectDetails">
+        <PropertyRef Name="IDInventoryObjectDetails" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
