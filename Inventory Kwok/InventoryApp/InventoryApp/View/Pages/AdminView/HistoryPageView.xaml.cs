@@ -16,6 +16,7 @@ namespace InventoryApp.View.Pages.AdminView
         {
             InitializeComponent();
             InventoryObject = inventoryObject;
+            txbNumberInventoryObject.Text = "Инвент. номер: " + inventoryObject.InventoryNumber;
             this.DataContext = this;
         }
 

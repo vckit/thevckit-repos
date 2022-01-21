@@ -14,6 +14,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
+        <StackPanel VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <TextBlock Name="txbNumberInventoryObject"
+                       FontSize="30"/>
+        </StackPanel>
+        
         <Grid Grid.Row="1">
             <ListView Name="ListHitoryObject"
                       ScrollViewer.VerticalScrollBarVisibility="Visible"
