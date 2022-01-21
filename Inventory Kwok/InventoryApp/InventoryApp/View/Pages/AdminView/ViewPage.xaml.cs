@@ -207,7 +207,38 @@ namespace InventoryApp.View.Pages.AdminView
                 var selectedItem = (InventoryObject)DataList.SelectedItem;
                 if (selectedItem.DocumentationPath != "")
                 {
-                    if (MessageBox.Show("Хотите открыть документацию?", "Операция прошла успешно!", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("Хотите открыть документацию?", "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                    {
+                        if (File.Exists(selectedItem.DocumentationPath))
+                        {
+                            Process.Start(selectedItem.DocumentationPath);
+                        }
+                    }
+                    else
+                        throw new Exception($"Путь {selectedItem.DocumentationPath} не найден");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ViewHistoryObject(object sender, RoutedEventArgs e)
+        {
+            var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
+            if(selectedInventoryObject != null)
+                NavigationService.Navigate(new HistoryPageView(selectedInventoryObject));
+        }
+
+        private void OpenDocumentation(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var selectedItem = (InventoryObject)DataList.SelectedItem;
+                if (selectedItem.DocumentationPath != "")
+                {
+                    if (MessageBox.Show("Хотите открыть документацию?", "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                     {
                         if (File.Exists(selectedItem.DocumentationPath))
                         {

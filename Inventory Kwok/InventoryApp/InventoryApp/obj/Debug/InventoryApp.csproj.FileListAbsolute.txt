@@ -80,3 +80,5 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\CabinetPageView.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\SetCabinetPageView.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\SetCabinetPageView.baml
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\HistoryPageView.g.cs
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\HistoryPageView.baml

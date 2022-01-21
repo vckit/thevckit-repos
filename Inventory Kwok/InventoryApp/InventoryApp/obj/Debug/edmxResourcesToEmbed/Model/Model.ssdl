@@ -33,13 +33,23 @@
     <Property Name="FIO" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Position" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CabinetNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="IDInventoryObject" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
   <EntityType Name="InventoryObject">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="InventoryNumber" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="InventoryNumber" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="CommissioningDate" Type="date" Nullable="false" />
     <Property Name="DocumentationPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
     <Property Name="IDType" Type="int" Nullable="false" />
@@ -141,6 +151,20 @@
       </Principal>
       <Dependent Role="CurrentStatus">
         <PropertyRef Name="IDStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_InventoryObject">
+    <End Role="InventoryObject" Type="Self.InventoryObject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InventoryObject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="IDInventoryObject" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -280,6 +304,7 @@
     <EntitySet Name="CabinetInventoryObject" EntityType="Self.CabinetInventoryObject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CurrentStatus" EntityType="Self.CurrentStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employe" EntityType="Self.Employe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObject" EntityType="Self.InventoryObject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObjectDetails" EntityType="Self.InventoryObjectDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="InventoryObjectInentoryObjectDetails" EntityType="Self.InventoryObjectInentoryObjectDetails" Schema="dbo" store:Type="Tables" />
@@ -299,6 +324,10 @@
     <AssociationSet Name="FK_CurrentStatus_Status" Association="Self.FK_CurrentStatus_Status">
       <End Role="Status" EntitySet="Status" />
       <End Role="CurrentStatus" EntitySet="CurrentStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_InventoryObject" Association="Self.FK_History_InventoryObject">
+      <End Role="InventoryObject" EntitySet="InventoryObject" />
+      <End Role="History" EntitySet="History" />
     </AssociationSet>
     <AssociationSet Name="FK_InventoryObject_CurrentStatus" Association="Self.FK_InventoryObject_CurrentStatus">
       <End Role="CurrentStatus" EntitySet="CurrentStatus" />

@@ -56,9 +56,9 @@
                     <ComboBoxItem>21</ComboBoxItem>
                     <ComboBoxItem>22</ComboBoxItem>
                 </ComboBox>
-                <TextBlock Text="Номер расположения: "/>
+                <TextBlock Text="Номер накладной: "/>
                 <TextBox Width="300" Text="{Binding Invoce.Number}"/>
-                <TextBlock Text="Дата расположения: "/>
+                <TextBlock Text="Дата накладной: "/>
                 <DatePicker Width="300" SelectedDate="{Binding Invoce.Date}" DisplayDate="2022-01-01"/>
             </StackPanel>
         </Grid>

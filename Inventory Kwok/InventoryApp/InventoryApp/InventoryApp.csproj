@@ -80,6 +80,9 @@
     <Compile Include="Model\Employe.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\History.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\InventoryObject.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,9 @@
     <Compile Include="View\Pages\AdminView\EmployeePageView.xaml.cs">
       <DependentUpon>EmployeePageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\AdminView\HistoryPageView.xaml.cs">
+      <DependentUpon>HistoryPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AdminView\SetCabinetPageView.xaml.cs">
       <DependentUpon>SetCabinetPageView.xaml</DependentUpon>
     </Compile>
@@ -175,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\AdminView\EmployeePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminView\HistoryPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

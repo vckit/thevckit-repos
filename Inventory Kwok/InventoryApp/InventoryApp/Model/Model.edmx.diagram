@@ -5,23 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a7199730e0044c4fbcaa2d86f443f8dc" Name="Diagram1">
-        <EntityTypeShape EntityType="dbinventoryModel.Cabinet" Width="1.5" PointX="5.25" PointY="9.875" />
+        <EntityTypeShape EntityType="dbinventoryModel.Cabinet" Width="1.5" PointX="5.25" PointY="10.875" />
         <EntityTypeShape EntityType="dbinventoryModel.CabinetInventoryObject" Width="1.5" PointX="7.5" PointY="5.5" />
-        <EntityTypeShape EntityType="dbinventoryModel.CurrentStatus" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="dbinventoryModel.Employe" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="dbinventoryModel.InventoryObject" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="dbinventoryModel.CurrentStatus" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="dbinventoryModel.Employe" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="dbinventoryModel.History" Width="1.5" PointX="7.5" PointY="8.625" />
+        <EntityTypeShape EntityType="dbinventoryModel.InventoryObject" Width="1.5" PointX="5.25" PointY="4.125" />
         <EntityTypeShape EntityType="dbinventoryModel.InventoryObjectDetails" Width="1.5" PointX="5.25" PointY="0.75" />
         <EntityTypeShape EntityType="dbinventoryModel.InventoryObjectInentoryObjectDetails" Width="1.5" PointX="7.5" PointY="2.625" />
-        <EntityTypeShape EntityType="dbinventoryModel.Invoce" Width="1.5" PointX="3" PointY="11.5" />
-        <EntityTypeShape EntityType="dbinventoryModel.Status" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="dbinventoryModel.Invoce" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="dbinventoryModel.Status" Width="1.5" PointX="0.75" PointY="11.375" />
         <EntityTypeShape EntityType="dbinventoryModel.SubType" Width="1.5" PointX="3" PointY="5.625" />
         <EntityTypeShape EntityType="dbinventoryModel.Type" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="dbinventoryModel.User" Width="1.5" PointX="7.75" PointY="9.375" />
+        <EntityTypeShape EntityType="dbinventoryModel.User" Width="1.5" PointX="9.75" PointY="0.875" />
         <AssociationConnector Association="dbinventoryModel.FK_CabinetInventoryObject_Cabinet" />
         <AssociationConnector Association="dbinventoryModel.FK_CabinetInventoryObject_InventoryObject" />
         <AssociationConnector Association="dbinventoryModel.FK_CurrentStatus_Status" />
         <AssociationConnector Association="dbinventoryModel.FK_InventoryObject_CurrentStatus" />
         <AssociationConnector Association="dbinventoryModel.FK_InventoryObject_Employe" />
+        <AssociationConnector Association="dbinventoryModel.FK_History_InventoryObject" />
         <AssociationConnector Association="dbinventoryModel.FK_InventoryObject_Invoce" />
         <AssociationConnector Association="dbinventoryModel.FK_InventoryObject_SubType" />
         <AssociationConnector Association="dbinventoryModel.FK_InventoryObject_Type" />

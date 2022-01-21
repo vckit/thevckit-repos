@@ -31,6 +31,7 @@ namespace InventoryApp.Model
         public virtual DbSet<CabinetInventoryObject> CabinetInventoryObject { get; set; }
         public virtual DbSet<CurrentStatus> CurrentStatus { get; set; }
         public virtual DbSet<Employe> Employe { get; set; }
+        public virtual DbSet<History> History { get; set; }
         public virtual DbSet<InventoryObject> InventoryObject { get; set; }
         public virtual DbSet<InventoryObjectDetails> InventoryObjectDetails { get; set; }
         public virtual DbSet<InventoryObjectInentoryObjectDetails> InventoryObjectInentoryObjectDetails { get; set; }

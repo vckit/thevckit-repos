@@ -45,10 +45,12 @@ namespace InventoryApp.View.Windows
                     case 1:
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
+                        this.Close();
                         break;
                     case 2:
                         UserWindow userWindow = new UserWindow();
                         userWindow.Show();
+                        this.Close();
                         break;
                 }
             }

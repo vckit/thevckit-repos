@@ -66,6 +66,20 @@
                         <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
                         <DataGridTextColumn Header="Расположение" Binding="{Binding Invoce.Number}"/>
                     </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Посмотреть историю" Click="ViewHistoryObject">
+                                <MenuItem.Icon>
+                                    <Image Width="150" Height="30"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Открыть документа" Click="OpenDocumentation">
+                                <MenuItem.Icon>
+                                    <Image Width="150" Height="30"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                 </DataGrid>
             </ScrollViewer>
 

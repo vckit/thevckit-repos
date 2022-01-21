@@ -62,6 +62,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="History">
+      <EntityTypeMapping TypeName="dbinventoryModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IDInventoryObject" ColumnName="IDInventoryObject" />
+          <ScalarProperty Name="CabinetNumber" ColumnName="CabinetNumber" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="InventoryObject">
       <EntityTypeMapping TypeName="dbinventoryModel.InventoryObject">
         <MappingFragment StoreEntitySet="InventoryObject">

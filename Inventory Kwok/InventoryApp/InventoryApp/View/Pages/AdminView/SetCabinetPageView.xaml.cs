@@ -14,6 +14,7 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class SetCabinetPageView : Page
     {
+        public History History { get; set; }
         public CabinetInventoryObject CabinetInventoryObject { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public List<Cabinet> Cabinets { get; set; }
@@ -44,6 +45,13 @@ namespace InventoryApp.View.Pages.AdminView
                     CabinetInventoryObject.IDInventoryObject = InventoryObject.ID;
                     AppData.db.CabinetInventoryObject.Add(CabinetInventoryObject);
                 }
+                History = new History();
+                History.FIO = cmbFIO.Text;
+                History.CabinetNumber = cmbCabinet.Text;
+                History.IDInventoryObject = InventoryObject.ID;
+                History.Date = DateTime.Now;
+                AppData.db.History.Add(History);
+
                 InventoryObject.Employe.FIO = cmbFIO.Text;
                 AppData.db.SaveChanges();
                 MessageBox.Show("Данные успешно добавлены в базу данных", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);

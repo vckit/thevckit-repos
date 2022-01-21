@@ -14,6 +14,8 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class ActioInventoryPageView : Page
     {
+        public History History { get; set; }
+        public List<Cabinet> Cabinets { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public CurrentStatus CurrentStatus { get; set; }
         public Invoce Invoce { get; set; }
@@ -34,6 +36,7 @@ namespace InventoryApp.View.Pages.AdminView
             Statuses = AppData.db.Status.ToList();
             txbPath.Text = inventoryObject.DocumentationPath;
             cmbLifeTime.Text = inventoryObject.LifeTime.ToString();
+            Cabinets = AppData.db.Cabinet.ToList();
             this.DataContext = this;
         }
 
@@ -48,13 +51,12 @@ namespace InventoryApp.View.Pages.AdminView
                     InventoryObject.IDCurrentStatus = CurrentStatus.ID;
                     InventoryObject.IDInvoce = Invoce.ID;
                     AppData.db.InventoryObject.Add(InventoryObject);
-
                     if (AppData.db.InventoryObject.Count(item => item.InventoryNumber == InventoryObject.InventoryNumber) > 0)
                     {
                         throw new Exception($"Объект с интерьерным номером {InventoryObject.InventoryNumber} уже существует в базе данных");
                     }
-
                 }
+
                 if (file.FileName != "")
                     InventoryObject.DocumentationPath = file.FileName;
                 InventoryObject.LifeTime = int.Parse(cmbLifeTime.Text);
@@ -82,7 +84,7 @@ namespace InventoryApp.View.Pages.AdminView
 
         private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            e.Handled = "0123456789,".IndexOf(e.Text) < 0;
+            e.Handled = "0123456789.".IndexOf(e.Text) < 0;
         }
 
 
