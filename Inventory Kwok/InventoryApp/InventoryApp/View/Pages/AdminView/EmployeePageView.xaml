@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
       mc:Ignorable="d" FontSize="16" Loaded="Page_Loaded"
       d:DesignHeight="450" d:DesignWidth="1300"
-      Title="EmployeePageView">
+      Title="Ответственные">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,7 +28,14 @@
         <StackPanel Grid.Column="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Поиск: "/>
+                <TextBox Name="txbSearch"
+                         Width="300"
+                         TextChanged="txbSearch_TextChanged"/>
+            </StackPanel>
             <ListView Name="ListEmployee"
+                      Height="300"
                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                       ScrollViewer.CanContentScroll="False"
                       Margin="0,0,10,0">

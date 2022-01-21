@@ -2,6 +2,8 @@
 using InventoryApp.Model;
 using InventoryApp.View.Windows;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,6 +46,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        public DateTime lifeTime { get; set; }
         // Удаление объекта из базы данных
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -52,9 +55,8 @@ namespace InventoryApp.View.Pages.AdminView
                 var selectedItem = (InventoryObject)DataList.SelectedItem;
                 if (selectedItem != null)
                 {
-                    if (selectedItem.CommissioningDate.Year + selectedItem.LifeTime < DateTime.Now.Year)
+                    if (selectedItem.CommissioningDate.AddYears(selectedItem.LifeTime) < DateTime.Today)
                     {
-
                         if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                         {
                             AppData.db.InventoryObject.Remove(selectedItem);
@@ -89,7 +91,7 @@ namespace InventoryApp.View.Pages.AdminView
             item.Employe.FIO.Contains(txbSearch.Text) ||
             item.InventoryNumber.Contains(txbSearch.Text) ||
             item.Type.Title.Contains(txbSearch.Text) ||
-            item.SubType.Title.Contains(txbSearch.Text) || 
+            item.SubType.Title.Contains(txbSearch.Text) ||
             item.CurrentStatus.Status.Title.Contains(txbSearch.Text)).ToList();
         }
 
@@ -196,6 +198,30 @@ namespace InventoryApp.View.Pages.AdminView
         private void buttonTypes_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new TypesPageView());
+        }
+
+        private void DataList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                var selectedItem = (InventoryObject)DataList.SelectedItem;
+                if (selectedItem.DocumentationPath != "")
+                {
+                    if (MessageBox.Show("Хотите открыть документацию?", "Операция прошла успешно!", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                    {
+                        if (File.Exists(selectedItem.DocumentationPath))
+                        {
+                            Process.Start(selectedItem.DocumentationPath);
+                        }
+                    }
+                    else
+                        throw new Exception($"Путь {selectedItem.DocumentationPath} не найден");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

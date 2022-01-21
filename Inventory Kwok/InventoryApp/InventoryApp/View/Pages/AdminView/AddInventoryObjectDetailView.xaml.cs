@@ -67,14 +67,7 @@ namespace InventoryApp.View.Pages.AdminView
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (InventoryObjectInentoryObjectDetails == null)
-            {
-                txbStatus.Text = "Комплектующих нет!";
-            }
-            else
-            {
-                ListInventoryObjectDetails.ItemsSource = AppData.db.InventoryObjectInentoryObjectDetails.Where(item => item.InventoryObject.ID == InventoryObjectInentoryObjectDetails.IDInventoryObject).ToList();
-            }
+            ListInventoryObjectDetails.ItemsSource = AppData.db.InventoryObjectInentoryObjectDetails.Where(item => item.InventoryObject.ID == InventoryObjectInentoryObjectDetails.IDInventoryObject).ToList();
         }
 
 
@@ -100,7 +93,6 @@ namespace InventoryApp.View.Pages.AdminView
                 txbTitle.Text = selectedItem.InventoryObjectDetails.Title;
             }
         }
-
         public void Clear()
         {
             txbSeraiNumber.Text = "";
@@ -108,6 +100,11 @@ namespace InventoryApp.View.Pages.AdminView
             selectedItem = null;
             ListInventoryObjectDetails.SelectedItem = null;
             GC.Collect();
+        }
+        private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           ListInventoryObjectDetails.ItemsSource = AppData.db.InventoryObjectInentoryObjectDetails.Where(item => item.InventoryObjectDetails.Title.Contains(txbSearch.Text) ||
+           item.InventoryObjectDetails.SeriaNumber.Contains(txbSearch.Text)).ToList();
         }
     }
 }

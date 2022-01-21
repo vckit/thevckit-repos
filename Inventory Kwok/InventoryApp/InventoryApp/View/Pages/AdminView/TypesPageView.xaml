@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
       mc:Ignorable="d" Loaded="Page_Loaded" FontSize="16"
       d:DesignHeight="450" d:DesignWidth="1300"
-      Title="TypesPageView">
+      Title="Типы объекта">
 
     <Grid>
         <Grid.ColumnDefinitions>

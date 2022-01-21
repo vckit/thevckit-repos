@@ -78,5 +78,11 @@ namespace InventoryApp.View.Pages.AdminView
             txbFIO.Text = "";
             txbPosition.Text = "";
         }
+
+        private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ListEmployee.ItemsSource = AppData.db.Employe.Where(item => item.FIO.Contains(txbSearch.Text) || 
+            item.Position.Contains(txbSearch.Text)).ToList();
+        }
     }
 }

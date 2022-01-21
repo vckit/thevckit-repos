@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InventoryApp.View.Pages.UserView"
-      mc:Ignorable="d" Loaded="Page_Loaded"
+      mc:Ignorable="d" Loaded="Page_Loaded" FontSize="15"
       d:DesignHeight="600" d:DesignWidth="1100"
       Title="Вы авторизованы как Пользователь">
 
@@ -46,34 +46,36 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <DataGrid Grid.Row="0"
-                      Name="DataList"
-                      IsReadOnly="True"
-                      ColumnWidth="*"
-                      AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
-                    <DataGridTextColumn Header="№" Binding="{Binding InventoryNumber}"/>
-                    <DataGridTextColumn Header="Дата ввода" Binding="{Binding CommissioningDate}"/>
-                    <DataGridTextColumn Header="Срок" Binding="{Binding LifeTime}"/>
-                    <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
-                    <DataGridTextColumn Header="Под тип" Binding="{Binding SubType.Title}"/>
-                    <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
-                    <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
-                    <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
-                    <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Расположение" Binding="{Binding Invoce.Number}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <ScrollViewer>
+                <DataGrid Grid.Row="0"
+                          Name="DataList"
+                          IsReadOnly="True"
+                          ColumnWidth="*"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Инвент. №" Binding="{Binding InventoryNumber}"/>
+                        <DataGridTextColumn Header="Дата введения в эксп." Binding="{Binding AllData}"/>
+                        <DataGridTextColumn Header="Срок годности" Binding="{Binding LifeTime}"/>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
+                        <DataGridTextColumn Header="Подтип" Binding="{Binding SubType.Title}"/>
+                        <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
+                        <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
+                        <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
+                        <DataGridTextColumn Header="Расположение" Binding="{Binding Invoce.Number}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
         </Grid>
 
         <Grid Grid.Row="2">
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-                <Button Content="Распечатать ведомость"
+                <Button Content="Список комплектующих"
                         Width="300"
-                        Click="buttonPrint_Click"/>
+                        Click="buttonListComplection_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

@@ -137,11 +137,20 @@
     <Compile Include="View\Pages\AdminView\AddUserPageView.xaml.cs">
       <DependentUpon>AddUserPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\AdminView\CabinetPageView.xaml.cs">
+      <DependentUpon>CabinetPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AdminView\EmployeePageView.xaml.cs">
       <DependentUpon>EmployeePageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\AdminView\SetCabinetPageView.xaml.cs">
+      <DependentUpon>SetCabinetPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\AdminView\TypesPageView.xaml.cs">
       <DependentUpon>TypesPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\UserView\InventoryObjectPageView.xaml.cs">
+      <DependentUpon>InventoryObjectPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\SetCabinetWindow.xaml.cs">
       <DependentUpon>SetCabinetWindow.xaml</DependentUpon>
@@ -161,7 +170,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Pages\AdminView\CabinetPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Pages\AdminView\EmployeePageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\AdminView\SetCabinetPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\AdminView\ViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\UserView\InventoryObjectPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -48,6 +48,7 @@
 
             <ScrollViewer>
                 <DataGrid Grid.Row="0"
+                          MouseDoubleClick="DataList_MouseDoubleClick"
                           Name="DataList"
                           IsReadOnly="True"
                           ColumnWidth="*"
@@ -88,7 +89,7 @@
                         Margin="10,0,0,0"
                         Width="200"
                         Click="buttonSetCabinet_Click"/>
-                <Button Content="Добавить комплектующие"
+                <Button Content="Комплектующие"
                     Margin="10,0,0,0"
                     Width="300"
                     Click="buttonAddInventoryObjectDetails_Click"/>
@@ -103,15 +104,15 @@
                 <Button Content="Распечатать ведомость"
                         Width="250"
                         Click="buttonPrint_Click"/>
-                <Button Content="Добавить сотрудника"
+                <Button Content="Ответственные"
                         Margin="10,0,0,0"
                         Width="250"
                         Click="buttonEmployeeAdd_Click"/>
-                <Button Content="Добавить пользователя"
+                <Button Content="Пользователи"
                         Margin="10,0,0,0"
                         Width="250"
                         Click="buttonAddUser_Click"/>
-                <Button Content="Добавить типы"
+                <Button Content="Типы/Подтипы"
                         Margin="10,0,0,0"
                         Width="250"
                         Click="buttonTypes_Click"/>
