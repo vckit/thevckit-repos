@@ -14,6 +14,7 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class ActioInventoryPageView : Page
     {
+        // Объявлем все сущности и списки для работы с базой данных
         public List<Cabinet> Cabinets { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public CurrentStatus CurrentStatus { get; set; }
@@ -39,6 +40,7 @@ namespace InventoryApp.View.Pages.AdminView
             this.DataContext = this;
         }
 
+        // Сохранение объекта | Редактирование существующего объекта
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -71,6 +73,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        // Выбрать путь до документации
         OpenFileDialog file = new OpenFileDialog();
         private void buttonSelectPath_Click(object sender, RoutedEventArgs e)
         {
@@ -81,9 +84,15 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        // Ограничение на ввод букв и прочих знаков в поле цена
         private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = "0123456789.".IndexOf(e.Text) < 0;
+        }
+
+        private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -17,6 +17,7 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     /// 
 
+    // Главное окно администратора
     public partial class ViewPage : Page
     {
         public ViewPage()
@@ -49,7 +50,6 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
-        public DateTime lifeTime { get; set; }
         // Удаление объекта из базы данных
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -58,6 +58,7 @@ namespace InventoryApp.View.Pages.AdminView
                 var selectedItem = (InventoryObject)DataList.SelectedItem;
                 if (selectedItem != null)
                 {
+                    // Проверяем, можем ли мы списать объект
                     if (selectedItem.CommissioningDate.AddYears(selectedItem.LifeTime) < DateTime.Today)
                     {
                         if (MessageBox.Show("Вы действительно хотите удалить выбранный объект? Данные будут удалены безвозвратно", "Подтвердите удаление.", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
@@ -65,7 +66,7 @@ namespace InventoryApp.View.Pages.AdminView
                             AppData.db.InventoryObject.Remove(selectedItem);
                             AppData.db.SaveChanges();
                             Page_Loaded(null, null);
-                            MessageBox.Show("ДАННЫЕ БЫЛИ УСПЕШНО УДАЛЕНЫ ИЗ БАЗЫ ДАННЫХ.", "УДАЛЕНИЕ ПРОШЛО УСПЕШНО!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Объект был успешно уделён.", "Удалено.", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
                     else
@@ -100,7 +101,7 @@ namespace InventoryApp.View.Pages.AdminView
             item.Invoce.Number.Contains(txbSearch.Text)).ToList();
         }
 
-        // Распечатать
+        // Распечатать ведомость инвентаризации
         private void buttonPrint_Click(object sender, RoutedEventArgs e)
         {
             var word = new Word.Application();
@@ -110,7 +111,7 @@ namespace InventoryApp.View.Pages.AdminView
                 var paragrah = word.ActiveDocument.Paragraphs.Add();
                 var tableRange = paragrah.Range;
                 var inventoryObjectInventoryObjectDetailsList = AppData.db.InventoryObjectInentoryObjectDetails.ToList();
-                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 16);
+                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 15);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Наименование";
                 table.Cell(1, 2).Range.Text = "Инвентарный номер";
@@ -151,7 +152,7 @@ namespace InventoryApp.View.Pages.AdminView
                 document.SaveAs2($"{Environment.CurrentDirectory}\\Ведомость инвентаризации.docx");
                 document.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
                 word.Quit(Word.WdSaveOptions.wdDoNotSaveChanges);
-                MessageBox.Show("Сохранение прошло успешно!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Ведомость успешно сформирована, расположение: {Environment.CurrentDirectory}\\Ведомость инвентаризации.docx!", "Ведомость успешно сформирован.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -171,6 +172,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        // Добавляем выбронному объекту комплектующие
         private void buttonAddInventoryObjectDetails_Click(object sender, RoutedEventArgs e)
         {
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
@@ -188,22 +190,23 @@ namespace InventoryApp.View.Pages.AdminView
             }
 
         }
-
+        // Страница добавление нового пользователя
         private void buttonAddUser_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddUserPageView());
         }
-
+        // Страница добавления нового ответственного
         private void buttonEmployeeAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new EmployeePageView());
         }
-
+        // Страница добавления нового типа и подтипа
         private void buttonTypes_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new TypesPageView());
         }
 
+        // Кликните по объекту два раза, программа проверит существует ли его документация по указанному пути, если да, то откроет его
         private void DataList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
@@ -228,13 +231,14 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        // Страница просмотра истории перемещений объекта
         private void ViewHistoryObject(object sender, RoutedEventArgs e)
         {
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
             if(selectedInventoryObject != null)
                 NavigationService.Navigate(new HistoryPageView(selectedInventoryObject));
         }
-
+        // Открыть документацию
         private void OpenDocumentation(object sender, RoutedEventArgs e)
         {
             try
@@ -258,7 +262,7 @@ namespace InventoryApp.View.Pages.AdminView
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        // Обновить 
         private void buttonUpdateList_Click(object sender, RoutedEventArgs e)
         {
             Page_Loaded(null, null);

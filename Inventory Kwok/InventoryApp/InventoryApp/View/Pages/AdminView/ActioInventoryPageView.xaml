@@ -26,7 +26,7 @@
                 <TextBlock Text="Тип: "/>
                 <ComboBox Name="cmbType" Width="300" SelectedItem="{Binding InventoryObject.Type}"
                           ItemsSource="{Binding Types}"
-                          DisplayMemberPath="Title"/>
+                          DisplayMemberPath="Title" SelectionChanged="cmbType_SelectionChanged"/>
                 <TextBlock Text="Подтип: "/>
                 <ComboBox Name="cmbSubType" Width="300" SelectedItem="{Binding InventoryObject.SubType}"
                           ItemsSource="{Binding SubTypes}"
