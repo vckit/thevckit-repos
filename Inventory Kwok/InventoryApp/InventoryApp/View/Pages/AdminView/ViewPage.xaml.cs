@@ -15,6 +15,8 @@ namespace InventoryApp.View.Pages.AdminView
     /// <summary>
     /// Interaction logic for ViewPage.xaml
     /// </summary>
+    /// 
+
     public partial class ViewPage : Page
     {
         public ViewPage()
@@ -42,6 +44,7 @@ namespace InventoryApp.View.Pages.AdminView
             {
                 var selectedCurrentStatus = AppData.db.CurrentStatus.FirstOrDefault(item => item.ID == selectedInventoryObject.IDCurrentStatus);
                 var selectedInvoce = AppData.db.Invoce.FirstOrDefault(item => item.ID == selectedInventoryObject.IDInvoce);
+                var selectedCabinetInventoryObject = AppData.db.CabinetInventoryObject.FirstOrDefault(item => item.IDInventoryObject == selectedInventoryObject.ID);
                 NavigationService.Navigate(new ActioInventoryPageView(selectedInventoryObject, selectedCurrentStatus, selectedInvoce));
             }
         }
@@ -71,7 +74,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -88,25 +91,26 @@ namespace InventoryApp.View.Pages.AdminView
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
+            item.LifeTime.ToString().Contains(txbSearch.Text) ||
             item.Employe.FIO.Contains(txbSearch.Text) ||
-            item.InventoryNumber.Contains(txbSearch.Text) ||
             item.Type.Title.Contains(txbSearch.Text) ||
             item.SubType.Title.Contains(txbSearch.Text) ||
-            item.CurrentStatus.Status.Title.Contains(txbSearch.Text)).ToList();
+            item.CurrentStatus.Status.Title.Contains(txbSearch.Text) ||
+            item.Amount.ToString().Contains(txbSearch.Text) ||
+            item.Invoce.Number.Contains(txbSearch.Text)).ToList();
         }
 
         // Распечатать
         private void buttonPrint_Click(object sender, RoutedEventArgs e)
         {
             var word = new Word.Application();
-
             try
             {
                 var document = word.Documents.Add();
                 var paragrah = word.ActiveDocument.Paragraphs.Add();
                 var tableRange = paragrah.Range;
                 var inventoryObjectInventoryObjectDetailsList = AppData.db.InventoryObjectInentoryObjectDetails.ToList();
-                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 15);
+                var table = document.Tables.Add(tableRange, inventoryObjectInventoryObjectDetailsList.Count, 16);
                 table.Borders.Enable = 1;
                 table.Cell(1, 1).Range.Text = "Наименование";
                 table.Cell(1, 2).Range.Text = "Инвентарный номер";
@@ -144,7 +148,7 @@ namespace InventoryApp.View.Pages.AdminView
                     table.Cell(i, 15).Range.Text = item.InventoryObject.Amount.ToString();
                     i++;
                 }
-                document.SaveAs2($"{Environment.CurrentDirectory}\\ведомость.docx");
+                document.SaveAs2($"{Environment.CurrentDirectory}\\Ведомость инвентаризации.docx");
                 document.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
                 word.Quit(Word.WdSaveOptions.wdDoNotSaveChanges);
                 MessageBox.Show("Сохранение прошло успешно!", "Сохранено!", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -220,7 +224,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -251,8 +255,13 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void buttonUpdateList_Click(object sender, RoutedEventArgs e)
+        {
+            Page_Loaded(null, null);
         }
     }
 }

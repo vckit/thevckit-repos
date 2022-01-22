@@ -1,0 +1,36 @@
+﻿<Window x:Class="InventoryApp.View.Windows.SetCabinetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryApp.View.Windows"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        Title="Установите кабинет" Height="450" Width="400">
+    <!--<Grid>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Инвентарь: "/>
+            <TextBox Text="{Binding InventoryObject.InventoryNumber}" IsReadOnly="True"/>
+            <TextBlock Text="Кабинеты: "/>
+            <ComboBox Width="300"
+                      Name="cmbCabinet"
+                      ItemsSource="{Binding Cabinets}"
+                      SelectedItem="{Binding InventoryObject.CabinetInventoryObject.Cabinet}"
+                      DisplayMemberPath="Number"/>
+            <TextBlock Text="Ответственный: "/>
+            <ComboBox Name="cmbFIO"
+                      ItemsSource="{Binding Employes}"
+                      DisplayMemberPath="FIO"
+                      SelectedItem="{Binding InventoryObject.Employe}"/>
+            <TextBlock Text="Дата: "/>
+            <Calendar SelectedDate="{Binding CabinetInventoryObject.Date}"/>
+            <Button Content="Сохранить"
+                    Click="buttonSave_Click"/>
+            <Button Content="Добавить кабинет"
+                    Click="buttonAddCabinet_Click"/>
+        </StackPanel>
+    </Grid>-->
+
+    <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
+</Window>

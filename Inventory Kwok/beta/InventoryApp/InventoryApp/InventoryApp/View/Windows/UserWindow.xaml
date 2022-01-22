@@ -1,0 +1,31 @@
+﻿<Window x:Class="InventoryApp.View.Windows.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryApp.View.Windows"
+        mc:Ignorable="d" FontSize="15"
+        Icon="/Resources/images.png" WindowState="Maximized"
+        Title="{Binding ElementName=MainFrame, Path=Content.Title}" Height="600" Width="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="10,0,0,0">
+                <Button Content="Назад"
+                        Width="100"
+                        Height="30"
+                        Name="buttonBack"
+                        Click="buttonBack_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Frame Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrsame_ContentRendered"/>
+        </Grid>
+    </Grid>
+</Window>

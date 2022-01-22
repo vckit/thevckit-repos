@@ -1,0 +1,137 @@
+﻿<Page x:Class="InventoryApp.View.Pages.AdminView.ViewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
+      mc:Ignorable="d" Loaded="Page_Loaded" FontSize="15"
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="Вы авторизованы как Администратор">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <Button Content="Выйти"
+                        Width="100"
+                        Margin="10,0,0,0"
+                        Click="buttonExit_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,10,0">
+                <TextBlock Text="Поиск: "/>
+                <TextBox x:Name="txbSearch"
+                         Width="300"
+                         TextChanged="txbSearch_TextChanged"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer>
+                <DataGrid Grid.Row="0"
+                          MouseDoubleClick="DataList_MouseDoubleClick"
+                          Name="DataList"
+                          IsReadOnly="True"
+                          ColumnWidth="*"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Инвент. №" Binding="{Binding InventoryNumber}"/>
+                        <DataGridTextColumn Header="Дата введения в эксп." Binding="{Binding AllData}"/>
+                        <DataGridTextColumn Header="Срок эксплуатации" Binding="{Binding LifeTime}"/>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
+                        <DataGridTextColumn Header="Подтип" Binding="{Binding SubType.Title}"/>
+                        <DataGridTextColumn Header="Кабинет" Binding="{Binding GetCabinet}"/>
+                        <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
+                        <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
+                        <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
+                        <DataGridTextColumn Header="Накладная" Binding="{Binding Invoce.Number}"/>
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Посмотреть историю" Click="ViewHistoryObject">
+                                <MenuItem.Icon>
+                                    <Image Width="150" Height="30"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Открыть документа" Click="OpenDocumentation">
+                                <MenuItem.Icon>
+                                    <Image Width="150" Height="30"/>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button Content="Добавить"
+                        Width="200"
+                        Name="buttonAdd"
+                        Click="buttonAdd_Click"/>
+                <Button Content="Редактировать"
+                        Width="200"
+                        Name="buttonEdit"
+                        Margin="10,0"
+                        Click="buttonEdit_Click"/>
+                <Button Content="Списать"
+                        Width="200"
+                        Name="buttonDelete"
+                        Click="buttonDelete_Click"/>
+                <Button Content="Указать кабинет"
+                        Margin="10,0,0,0"
+                        Width="200"
+                        Click="buttonSetCabinet_Click"/>
+                <Button Content="Комплектующие"
+                    Margin="10,0,0,0"
+                    Width="300"
+                    Click="buttonAddInventoryObjectDetails_Click"/>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button Content="Распечатать ведомость"
+                        Width="250"
+                        Click="buttonPrint_Click"/>
+                <Button Content="Ответственные"
+                        Margin="10,0,0,0"
+                        Width="250"
+                        Click="buttonEmployeeAdd_Click"/>
+                <Button Content="Пользователи"
+                        Margin="10,0,0,0"
+                        Width="250"
+                        Click="buttonAddUser_Click"/>
+                <Button Content="Типы/Подтипы"
+                        Margin="10,0,0,0"
+                        Width="250"
+                        Click="buttonTypes_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

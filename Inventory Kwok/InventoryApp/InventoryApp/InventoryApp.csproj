@@ -155,6 +155,9 @@
     <Compile Include="View\Pages\AdminView\TypesPageView.xaml.cs">
       <DependentUpon>TypesPageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\UserView\HistoryPageView.xaml.cs">
+      <DependentUpon>HistoryPageView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\UserView\InventoryObjectPageView.xaml.cs">
       <DependentUpon>InventoryObjectPageView.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\AdminView\ViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\UserView\HistoryPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

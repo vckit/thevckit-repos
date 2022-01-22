@@ -1,0 +1,135 @@
+﻿<Page x:Class="InventoryApp.View.Pages.AdminView.TypesPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
+      mc:Ignorable="d" Loaded="Page_Loaded" FontSize="16"
+      d:DesignHeight="450" d:DesignWidth="1300"
+      Title="Типы объекта">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center"
+                    Grid.Column="0"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Тип: "/>
+            <TextBox Name="txbType" Width="300"/>
+            <Button Content="Сохранить"
+                    Click="buttonSaveType_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <ListView Name="ListType"
+                      Height="200"
+                      Width="700"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="False"
+                      Margin="0,0,10,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding Title}" Width="400"/>
+                        <GridViewColumn Header="Редактировать" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <Button Content="Выбрать"
+                                                Width="100"
+                                                Click="buttonSelectedType_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Button Content="Удалить"
+                                                Width="100"
+                                                Margin="5,0,0,0"
+                                                Click="buttonDeleteType_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Подтип: "/>
+            <TextBox Name="txbSubType" Width="300"/>
+            <TextBlock Text="Тип: "/>
+            <ComboBox Width="300" Name="cmbType">
+            </ComboBox>
+            <Button Content="Сохранить"
+                    Click="buttonSaveSubType_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Grid.Column="1">
+            <ListView Name="ListSubType"
+                      Width="700"
+                      Height="200"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="False"
+                      Margin="0,0,10,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Подтип" DisplayMemberBinding="{Binding Title}" Width="200"/>
+                        <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding Type.Title}" Width="200"/>
+                        <GridViewColumn Header="Редактировать" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <Button Content="Выбрать"
+                                                Width="100"
+                                                Click="buttonSelectedSubType_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Button Content="Удалить"
+                                                Width="100"
+                                                Margin="5,0,0,0"
+                                                Click="buttonDeleteSubType_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

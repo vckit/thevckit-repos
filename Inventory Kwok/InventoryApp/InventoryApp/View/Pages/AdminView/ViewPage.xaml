@@ -21,11 +21,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
                 <Button Content="Выйти"
                         Width="100"
                         Margin="10,0,0,0"
                         Click="buttonExit_Click"/>
+                <Button Content="Обновить"
+                        Margin="10,0,0,0"
+                        Width="100"
+                        Click="buttonUpdateList_Click"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1"
@@ -45,7 +50,6 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-
             <ScrollViewer>
                 <DataGrid Grid.Row="0"
                           MouseDoubleClick="DataList_MouseDoubleClick"
@@ -57,14 +61,15 @@
                         <DataGridTextColumn Header="Наименование" Binding="{Binding Title}"/>
                         <DataGridTextColumn Header="Инвент. №" Binding="{Binding InventoryNumber}"/>
                         <DataGridTextColumn Header="Дата введения в эксп." Binding="{Binding AllData}"/>
-                        <DataGridTextColumn Header="Срок годности" Binding="{Binding LifeTime}"/>
+                        <DataGridTextColumn Header="Срок эксплуатации" Binding="{Binding LifeTime}"/>
                         <DataGridTextColumn Header="Тип" Binding="{Binding Type.Title}"/>
                         <DataGridTextColumn Header="Подтип" Binding="{Binding SubType.Title}"/>
+                        <DataGridTextColumn Header="Кабинет" Binding="{Binding GetCabinet}"/>
                         <DataGridTextColumn Header="Документ" Binding="{Binding DocumentationPath}"/>
                         <DataGridTextColumn Header="Состояние" Binding="{Binding CurrentStatus.Status.Title}"/>
                         <DataGridTextColumn Header="Ответственный" Binding="{Binding Employe.FIO}"/>
                         <DataGridTextColumn Header="Цена" Binding="{Binding Amount}"/>
-                        <DataGridTextColumn Header="Расположение" Binding="{Binding Invoce.Number}"/>
+                        <DataGridTextColumn Header="Накладная" Binding="{Binding Invoce.Number}"/>
                     </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>

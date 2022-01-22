@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbinventoryModelStoreContainer" CdmEntityContainer="dbinventoryEntities">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="dbinventoryModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="dbinventoryModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="dbinventoryModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="dbinventoryModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbinventoryModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="dbinventoryModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="dbinventoryModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="dbinventoryModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="dbinventoryModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Cabinet">
+      <EntityTypeMapping TypeName="dbinventoryModel.Cabinet">
+        <MappingFragment StoreEntitySet="Cabinet">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CabinetInventoryObject">
+      <EntityTypeMapping TypeName="dbinventoryModel.CabinetInventoryObject">
+        <MappingFragment StoreEntitySet="CabinetInventoryObject">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IDCabinet" ColumnName="IDCabinet" />
+          <ScalarProperty Name="IDInventoryObject" ColumnName="IDInventoryObject" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CurrentStatus">
+      <EntityTypeMapping TypeName="dbinventoryModel.CurrentStatus">
+        <MappingFragment StoreEntitySet="CurrentStatus">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="NumberAct" ColumnName="NumberAct" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employe">
+      <EntityTypeMapping TypeName="dbinventoryModel.Employe">
+        <MappingFragment StoreEntitySet="Employe">
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History">
+      <EntityTypeMapping TypeName="dbinventoryModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IDInventoryObject" ColumnName="IDInventoryObject" />
+          <ScalarProperty Name="CabinetNumber" ColumnName="CabinetNumber" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryObject">
+      <EntityTypeMapping TypeName="dbinventoryModel.InventoryObject">
+        <MappingFragment StoreEntitySet="InventoryObject">
+          <ScalarProperty Name="IDInventoryObjectDetail" ColumnName="IDInventoryObjectDetail" />
+          <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IDCurrentStatus" ColumnName="IDCurrentStatus" />
+          <ScalarProperty Name="IDInvoce" ColumnName="IDInvoce" />
+          <ScalarProperty Name="LifeTime" ColumnName="LifeTime" />
+          <ScalarProperty Name="IDSubType" ColumnName="IDSubType" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
+          <ScalarProperty Name="DocumentationPath" ColumnName="DocumentationPath" />
+          <ScalarProperty Name="CommissioningDate" ColumnName="CommissioningDate" />
+          <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryObjectDetails">
+      <EntityTypeMapping TypeName="dbinventoryModel.InventoryObjectDetails">
+        <MappingFragment StoreEntitySet="InventoryObjectDetails">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SeriaNumber" ColumnName="SeriaNumber" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryObjectInentoryObjectDetails">
+      <EntityTypeMapping TypeName="dbinventoryModel.InventoryObjectInentoryObjectDetails">
+        <MappingFragment StoreEntitySet="InventoryObjectInentoryObjectDetails">
+          <ScalarProperty Name="IDInventoryObjectDetails" ColumnName="IDInventoryObjectDetails" />
+          <ScalarProperty Name="IDInventoryObject" ColumnName="IDInventoryObject" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoce">
+      <EntityTypeMapping TypeName="dbinventoryModel.Invoce">
+        <MappingFragment StoreEntitySet="Invoce">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="dbinventoryModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubType">
+      <EntityTypeMapping TypeName="dbinventoryModel.SubType">
+        <MappingFragment StoreEntitySet="SubType">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="IDType" ColumnName="IDType" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type">
+      <EntityTypeMapping TypeName="dbinventoryModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="dbinventoryModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

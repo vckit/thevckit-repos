@@ -1,0 +1,83 @@
+﻿<Page x:Class="InventoryApp.View.Pages.AdminView.AddUserPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
+      Loaded="Page_Loaded"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1300"
+      Title="Пользователи">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel HorizontalAlignment="Center"
+                    Grid.Column="0"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Имя пользователя: "/>
+            <TextBox Name="txbUsername" Width="300"/>
+            <TextBlock Text="Пароль: "/>
+            <TextBox Name="txbPassword" Width="300"/>
+            <TextBlock Text="Роль: "/>
+            <ComboBox Width="300" Name="cmbRole" SelectionChanged="cmbRole_SelectionChanged">
+                <ComboBoxItem>1 - Администратор</ComboBoxItem>
+                <ComboBoxItem>2 - Пользователь</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Сохранить"
+                    Click="buttonSave_Click"/>
+            <Button Content="Отменить выбор"
+                    Click="buttonCancelSelected_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Name="ListData"
+                    Visibility="Visible"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <ListView Name="ListUser"
+                      Height="300"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                      ScrollViewer.CanContentScroll="False"
+                      Margin="0,0,10,0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Имя пользователя" DisplayMemberBinding="{Binding Username}" Width="200"/>
+                        <GridViewColumn Header="Пароль" DisplayMemberBinding="{Binding Password}" Width="200"/>
+                        <GridViewColumn Header="Роль" DisplayMemberBinding="{Binding GetRoleText}" Width="200"/>
+                        <GridViewColumn Header="Редактировать" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+                                        <Button Content="Выбрать"
+                                                Width="100"
+                                                Click="buttonSelected_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                        <Button Content="Удалить"
+                                                Width="100"
+                                                Margin="5,0,0,0"
+                                                Click="buttonDelete_Click">
+                                            <Button.Resources>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                            </Button.Resources>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

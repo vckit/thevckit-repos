@@ -14,7 +14,6 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class ActioInventoryPageView : Page
     {
-        public History History { get; set; }
         public List<Cabinet> Cabinets { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public CurrentStatus CurrentStatus { get; set; }
@@ -85,12 +84,6 @@ namespace InventoryApp.View.Pages.AdminView
         private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = "0123456789.".IndexOf(e.Text) < 0;
-        }
-
-
-        private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

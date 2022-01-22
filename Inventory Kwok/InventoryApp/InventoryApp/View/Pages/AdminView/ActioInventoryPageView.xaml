@@ -26,12 +26,12 @@
                 <TextBlock Text="Тип: "/>
                 <ComboBox Name="cmbType" Width="300" SelectedItem="{Binding InventoryObject.Type}"
                           ItemsSource="{Binding Types}"
-                          DisplayMemberPath="Title" SelectionChanged="cmbType_SelectionChanged"/>
+                          DisplayMemberPath="Title"/>
                 <TextBlock Text="Подтип: "/>
                 <ComboBox Name="cmbSubType" Width="300" SelectedItem="{Binding InventoryObject.SubType}"
                           ItemsSource="{Binding SubTypes}"
                           DisplayMemberPath="Title"/>
-                <TextBlock Text="Срок годности: "/>
+                <TextBlock Text="Срок эксплуатации: "/>
                 <ComboBox Width="300" Name="cmbLifeTime">
                     <ComboBoxItem>1</ComboBoxItem>
                     <ComboBoxItem>2</ComboBoxItem>
@@ -70,6 +70,12 @@
                 <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Employe}"
                           ItemsSource="{Binding Employees}"
                           DisplayMemberPath="FIO"/>
+                <TextBlock Text="Кабинет: "/>
+                <ComboBox Width="300"
+                          Name="cmbCabinet"
+                          ItemsSource="{Binding Cabinets}"
+                          SelectedItem="{Binding CabinetInventoryObject.Cabinet}"
+                          DisplayMemberPath="Number"></ComboBox>
                 <TextBlock Text="Текущий статус: "/>
                 <ComboBox Width="300" SelectedItem="{Binding CurrentStatus.Status}"
                           ItemsSource="{Binding Statuses}"

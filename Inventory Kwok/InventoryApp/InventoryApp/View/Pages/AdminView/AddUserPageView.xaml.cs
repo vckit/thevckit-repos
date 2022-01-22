@@ -56,7 +56,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 Clear();
             }
         }
