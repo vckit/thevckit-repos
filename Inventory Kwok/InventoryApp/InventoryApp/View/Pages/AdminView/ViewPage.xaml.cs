@@ -1,8 +1,8 @@
 ﻿using InventoryApp.Context;
 using InventoryApp.Model;
 using InventoryApp.View.Windows;
-using Microsoft.Office.Interop.Word;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace InventoryApp.View.Pages.AdminView
         // Выгрузка данных из Базы Данных
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataList.ItemsSource = AppData.db.InventoryObject.ToList();
+            Search();
         }
 
         // Добавление нового объекта
@@ -92,20 +92,12 @@ namespace InventoryApp.View.Pages.AdminView
         // Поиск данных
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            DataList.ItemsSource = AppData.db.InventoryObject.Where(item => item.Title.Contains(txbSearch.Text) ||
-            item.LifeTime.ToString().Contains(txbSearch.Text) ||
-            item.Employe.FIO.Contains(txbSearch.Text) ||
-            item.Type.Title.Contains(txbSearch.Text) ||
-            item.SubType.Title.Contains(txbSearch.Text) ||
-            item.CurrentStatus.Status.Title.Contains(txbSearch.Text) ||
-            item.Amount.ToString().Contains(txbSearch.Text) ||
-            item.Invoce.Number.Contains(txbSearch.Text)).ToList();
+            Search(cmbStatus.Text, txbSearch.Text);
         }
 
         // Распечатать ведомость инвентаризации
         private void buttonPrint_Click(object sender, RoutedEventArgs e)
         {
-            //CreateDocument();
             var word = new Word.Application();
             try
             {
@@ -163,7 +155,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.Source + " выдал исключение!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, ex.Source + "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 word.Quit(Word.WdSaveOptions.wdDoNotSaveChanges);
             }
         }
@@ -242,7 +234,7 @@ namespace InventoryApp.View.Pages.AdminView
         private void ViewHistoryObject(object sender, RoutedEventArgs e)
         {
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
-            if(selectedInventoryObject != null)
+            if (selectedInventoryObject != null)
                 NavigationService.Navigate(new HistoryPageView(selectedInventoryObject));
         }
         // Открыть документацию
@@ -274,58 +266,78 @@ namespace InventoryApp.View.Pages.AdminView
         {
             Page_Loaded(null, null);
         }
-        public void CreateTableInDoc()
+
+        private List<InventoryObject> CheckDateObject(List<InventoryObject> collection)
         {
-            object oMissing = System.Reflection.Missing.Value;
-            object oEndOfDoc = "\\endofdoc";
-            Microsoft.Office.Interop.Word._Application objWord;
-            Microsoft.Office.Interop.Word._Document objDoc;
-            objWord = new Microsoft.Office.Interop.Word.Application();
-            objWord.Visible = true;
-            objDoc = objWord.Documents.Add(ref oMissing, ref oMissing, ref oMissing, ref oMissing);
-            int i = 0;
-            int j = 0;
-            Microsoft.Office.Interop.Word.Table objTable;
-            Microsoft.Office.Interop.Word.Range wrdRng = objDoc.Bookmarks.get_Item(ref oEndOfDoc).Range;
-
-            string strText;
-            objTable = objDoc.Tables.Add(wrdRng, 4, 2, ref oMissing, ref oMissing);
-            objTable.Range.ParagraphFormat.SpaceAfter = 7;
-            strText = "Ведомость инвентаризации";
-            objTable.Rows[1].Range.Text = strText;
-            objTable.Rows[1].Range.Font.Bold = 1;
-            objTable.Rows[1].Range.Font.Size = 24;
-            objTable.Rows[1].Range.Font.Position = 1;
-            objTable.Rows[1].Cells[1].Merge(objTable.Rows[1].Cells[2]);
-            objTable.Cell(1, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-
-            objTable.Rows[2].Range.Font.Italic = 1;
-            objTable.Rows[2].Range.Font.Size = 14;
-            objTable.Cell(2, 1).Range.Text = "Item Name";
-            objTable.Cell(2, 2).Range.Text = "Price";
-            objTable.Cell(2, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-            objTable.Cell(2, 2).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-
-            for (i = 3; i <= 4; i++)
+            List<InventoryObject> list = new List<InventoryObject>();
+            foreach (InventoryObject item in collection)
             {
-                for (j = 1; j <= 2; j++)
+                if (item.CommissioningDate.AddYears(item.LifeTime) < DateTime.Today) list.Add(item);
+            }
+            if (list.Count > 0) return list; else return null;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (CheckDateObject(AppData.db.InventoryObject.ToList()) != null)
+            {
+                DataList.ItemsSource = CheckDateObject(AppData.db.InventoryObject.ToList());
+            }
+            else
+            {
+                MessageBox.Show("Объектов, у которых срок годности истек - НЕТ", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                checkDate.IsChecked = false;
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Page_Loaded(null, null);
+        }
+
+        private void cmbStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Search((cmbStatus.SelectedItem as ComboBoxItem).Content.ToString(), txbSearch.Text);
+        }
+
+        private void Search(string status = "", string search = "")
+        {
+            var inventoryObjects = AppData.db.InventoryObject.ToList();
+            if (!string.IsNullOrEmpty(status) && !string.IsNullOrEmpty(status))
+            {
+                if (status == "Рабочее")
                 {
-                    if (j == 1)
-                        objTable.Cell(i, j).Range.Text = "Item " + (i - 1);
-                    else
-                        objTable.Cell(i, j).Range.Text = "Price of " + (i - 1);
+                    inventoryObjects = inventoryObjects.Where(item => item.CurrentStatus.Status.Title == "Рабочее").ToList();
+                }
+                if (status == "На ремонте")
+                {
+                    inventoryObjects = inventoryObjects.Where(item => item.CurrentStatus.Status.Title == "На ремонте").ToList();
+                }
+                if (status == "Списано")
+                {
+                    inventoryObjects = inventoryObjects.Where(item => item.CurrentStatus.Status.Title == "Списано").ToList();
+                }
+                if (status == "Подразделение")
+                {
+                    inventoryObjects = inventoryObjects.Where(item => item.CurrentStatus.Status.Title == "Подразделение").ToList();
+                }
+                if(status == "Все")
+                {
+                    inventoryObjects =inventoryObjects.ToList();
                 }
             }
-
-            try
+            if (!string.IsNullOrEmpty(search) && !string.IsNullOrEmpty(search))
             {
-                objTable.Borders.Shadow = true;
-                objTable.Borders.Shadow = true;
+                inventoryObjects = inventoryObjects.Where(item => item.Title.Contains(txbSearch.Text) ||
+                item.LifeTime.ToString().Contains(txbSearch.Text) ||
+                item.Employe.FIO.Contains(txbSearch.Text) ||
+                item.Type.Title.Contains(txbSearch.Text) ||
+                item.SubType.Title.Contains(txbSearch.Text) ||
+                item.CurrentStatus.Status.Title.Contains(txbSearch.Text) ||
+                item.Amount.ToString().Contains(txbSearch.Text) ||
+                item.Invoce.Number.Contains(txbSearch.Text)).ToList();
             }
-            catch
-            {
-            }
-
+            DataList.ItemsSource = inventoryObjects;
         }
     }
 }

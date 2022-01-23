@@ -21,11 +21,22 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel HorizontalAlignment="Left"
-                        VerticalAlignment="Center">
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
                 <Button Content="Выйти"
                         Width="100"
                         Margin="10,0,0,0"
                         Click="buttonExit_Click"/>
+                <TextBlock Text="Состояние: "
+                           Margin="10,0,0,0"/>
+                <ComboBox Width="200"
+                          Name="cmbStatus" SelectionChanged="cmbStatus_SelectionChanged">
+                    <ComboBoxItem>Все</ComboBoxItem>
+                    <ComboBoxItem>Рабочее</ComboBoxItem>
+                    <ComboBoxItem>На ремонте</ComboBoxItem>
+                    <ComboBoxItem>Списано</ComboBoxItem>
+                    <ComboBoxItem>Подразделение</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1"
@@ -33,6 +44,11 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Margin="0,0,10,0">
+                <CheckBox Content="Cрок годности истёк"
+                      Name="checkDate"
+                      Margin="0,0,10,0"
+                      Checked="CheckBox_Checked"
+                      Unchecked="CheckBox_Unchecked"/>
                 <TextBlock Text="Поиск: "/>
                 <TextBox x:Name="txbSearch"
                          Width="300"

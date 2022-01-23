@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:InventoryApp.View.Pages.AdminView"
       mc:Ignorable="d" Loaded="Page_Loaded" FontSize="15"
-      d:DesignHeight="600" d:DesignWidth="1100"
+      d:DesignHeight="600" d:DesignWidth="1300"
       Title="Вы авторизованы как Администратор">
 
     <Grid>
@@ -31,6 +31,17 @@
                         Margin="10,0,0,0"
                         Width="100"
                         Click="buttonUpdateList_Click"/>
+
+                <TextBlock Text="Состояние: "
+                           Margin="10,0,0,0"/>
+                <ComboBox Width="200"
+                          Name="cmbStatus" SelectionChanged="cmbStatus_SelectionChanged">
+                    <ComboBoxItem>Все</ComboBoxItem>
+                    <ComboBoxItem>Рабочее</ComboBoxItem>
+                    <ComboBoxItem>На ремонте</ComboBoxItem>
+                    <ComboBoxItem>Списано</ComboBoxItem>
+                    <ComboBoxItem>Подразделение</ComboBoxItem>
+                </ComboBox>
             </StackPanel>
 
             <StackPanel Grid.Column="1"
@@ -38,6 +49,11 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Margin="0,0,10,0">
+            <CheckBox Content="Cрок годности истёк"
+                      Name="checkDate"
+                      Margin="0,0,10,0"
+                      Checked="CheckBox_Checked"
+                      Unchecked="CheckBox_Unchecked"/>
                 <TextBlock Text="Поиск: "/>
                 <TextBox x:Name="txbSearch"
                          Width="300"
@@ -45,7 +61,14 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Name="NonDeleteObject">
+            <TextBlock FontSize="40"
+                       Visibility="Collapsed"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Объектов которых можно списать НЕТ."/>
+        </Grid>
+        <Grid Grid.Row="1" Name="ObjectVisible" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="50"/>

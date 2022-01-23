@@ -47,7 +47,7 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
-                if (txbPrice.Text == "0") throw new Exception("Цена не может быть меньше или равно 0");
+                if (Convert.ToDouble(txbPrice.Text) <= 0) throw new Exception("Цена не может быть меньше или равно 0");
                 if (InventoryObject.ID == 0 && CurrentStatus.ID == 0 && Invoce.ID == 0)
                 {
                     AppData.db.CurrentStatus.Add(CurrentStatus);
@@ -71,6 +71,7 @@ namespace InventoryApp.View.Pages.AdminView
                 if (selectedCabinet != null) selectedCabinet.IDCabinet = AppData.db.Cabinet.FirstOrDefault(i => i.Number == cmbCabinet.Text).ID;
                 if (file.FileName != "")
                     InventoryObject.DocumentationPath = file.FileName;
+                else InventoryObject.DocumentationPath = "";
                 InventoryObject.LifeTime = int.Parse(cmbLifeTime.Text);
                 AppData.db.SaveChanges();
                 MessageBox.Show("ДАННЫЕ ДОБАВЛЕНЫ В БАЗУ ДАННЫХ.", "УСПЕШНО СОХРАНЕНО!", MessageBoxButton.OK, MessageBoxImage.Information);
