@@ -55,10 +55,16 @@ namespace InventoryApp.View.Pages.AdminView
                     InventoryObject.IDCurrentStatus = CurrentStatus.ID;
                     InventoryObject.IDInvoce = Invoce.ID;
                     AppData.db.InventoryObject.Add(InventoryObject);
+
                     if (AppData.db.InventoryObject.Count(item => item.InventoryNumber == InventoryObject.InventoryNumber) > 0)
                     {
                         throw new Exception($"Объект с интерьерным номером {InventoryObject.InventoryNumber} уже существует в базе данных");
                     }
+                    CabinetInventoryObject = new CabinetInventoryObject();
+                    CabinetInventoryObject.IDCabinet = AppData.db.Cabinet.FirstOrDefault(i => i.Number == cmbCabinet.Text).ID;
+                    CabinetInventoryObject.IDInventoryObject = InventoryObject.ID;
+                    CabinetInventoryObject.Date = DateTime.Now;
+                    AppData.db.CabinetInventoryObject.Add(CabinetInventoryObject);
                 }
 
                 History = new History();

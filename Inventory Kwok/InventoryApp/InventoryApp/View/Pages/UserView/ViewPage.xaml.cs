@@ -55,6 +55,7 @@ namespace InventoryApp.View.Pages.UserView
             }
         }
 
+        // Посмотреть историю
         private void ViewHistoryObject(object sender, RoutedEventArgs e)
         {
             var selectedInventoryObject = (InventoryObject)DataList.SelectedItem;
@@ -177,6 +178,7 @@ namespace InventoryApp.View.Pages.UserView
         {
             Page_Loaded(null, null);
         }
+
         private void Search(string status = "", string search = "")
         {
             var inventoryObjects = AppData.db.InventoryObject.ToList();
