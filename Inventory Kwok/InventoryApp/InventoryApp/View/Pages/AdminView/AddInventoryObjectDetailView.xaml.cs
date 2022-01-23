@@ -27,6 +27,7 @@ namespace InventoryApp.View.Pages.AdminView
             this.DataContext = this;
         }
 
+        // Добавляем комплектующие выбранному объекту
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -70,7 +71,7 @@ namespace InventoryApp.View.Pages.AdminView
             ListInventoryObjectDetails.ItemsSource = AppData.db.InventoryObjectInentoryObjectDetails.Where(item => item.InventoryObject.ID == InventoryObjectInentoryObjectDetails.IDInventoryObject).ToList();
         }
 
-
+        // Удаляем комплектующие за выбранным объектом
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
             selectedItem = (InventoryObjectInentoryObjectDetails)ListInventoryObjectDetails.SelectedItem;
@@ -84,6 +85,7 @@ namespace InventoryApp.View.Pages.AdminView
 
             }
         }
+        // Выбираем комплектующие чтобы отредактировать
         private void buttonSelected_Click(object sender, RoutedEventArgs e)
         {
             selectedItem = (InventoryObjectInentoryObjectDetails)ListInventoryObjectDetails.SelectedItem;
@@ -93,6 +95,7 @@ namespace InventoryApp.View.Pages.AdminView
                 txbTitle.Text = selectedItem.InventoryObjectDetails.Title;
             }
         }
+        // Отчестка полей после завершения действия
         public void Clear()
         {
             txbSeraiNumber.Text = "";
@@ -101,6 +104,7 @@ namespace InventoryApp.View.Pages.AdminView
             ListInventoryObjectDetails.SelectedItem = null;
             GC.Collect();
         }
+        // Поиск данных
         private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
            ListInventoryObjectDetails.ItemsSource = AppData.db.InventoryObjectInentoryObjectDetails.Where(item => item.InventoryObjectDetails.Title.Contains(txbSearch.Text) ||

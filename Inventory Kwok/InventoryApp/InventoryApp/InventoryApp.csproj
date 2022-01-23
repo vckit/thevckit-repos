@@ -110,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialHistory.cs" />
     <Compile Include="Model\PartialInventoryObject.cs" />
     <Compile Include="Model\PartialInventoryObjectDetails.cs" />
     <Compile Include="Model\PartialUser.cs" />

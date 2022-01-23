@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Number" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Number" Type="char" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="CabinetInventoryObject">
     <Key>
@@ -22,7 +22,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDStatus" Type="int" Nullable="false" />
-    <Property Name="NumberAct" Type="varchar" MaxLength="20" />
+    <Property Name="NumberAct" Type="char" MaxLength="50" />
     <Property Name="Date" Type="date" />
   </EntityType>
   <EntityType Name="Employe">
@@ -39,7 +39,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="CabinetNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="CabinetNumber" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="IDInventoryObject" Type="int" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
   </EntityType>
@@ -48,8 +48,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="InventoryNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="InventoryNumber" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="CommissioningDate" Type="date" Nullable="false" />
     <Property Name="DocumentationPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
     <Property Name="IDType" Type="int" Nullable="false" />
@@ -66,8 +66,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SeriaNumber" Type="varchar" MaxLength="30" />
-    <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SeriaNumber" Type="char" MaxLength="50" />
+    <Property Name="Title" Type="char" MaxLength="500" Nullable="false" />
   </EntityType>
   <EntityType Name="InventoryObjectInentoryObjectDetails">
     <Key>
@@ -82,7 +82,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Number" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Number" Type="char" MaxLength="50" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="Status">
@@ -90,7 +90,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="SubType">
     <Key>
@@ -98,14 +98,14 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDType" Type="int" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Type">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>

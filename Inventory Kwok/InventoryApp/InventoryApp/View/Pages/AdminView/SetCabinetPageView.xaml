@@ -22,8 +22,6 @@
                       ItemsSource="{Binding Employes}"
                       DisplayMemberPath="FIO"
                       SelectedItem="{Binding InventoryObject.Employe}"/>
-            <TextBlock Text="Дата назначения: "/>
-            <Calendar SelectedDate="{Binding CabinetInventoryObject.Date}"/>
             <Button Content="Сохранить"
                     Click="buttonSave_Click"/>
             <Button Content="Добавить кабинет"

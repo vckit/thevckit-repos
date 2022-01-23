@@ -14,11 +14,13 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class SetCabinetPageView : Page
     {
+        // Объявляем поля объектов
         public History History { get; set; }
         public CabinetInventoryObject CabinetInventoryObject { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public List<Cabinet> Cabinets { get; set; }
         public List<Employe> Employes { get; set; }
+        // В конструкторе инициализируем новые полученны объекты
         public SetCabinetPageView(CabinetInventoryObject cabinetInventoryObject, InventoryObject inventoryObject)
         {
             InitializeComponent();
@@ -33,18 +35,21 @@ namespace InventoryApp.View.Pages.AdminView
         {
 
         }
-
+        // Фиксируем объект за кабинтом и назначаем ответственного
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Проверяем, все ли поля заполнены
                 if (cmbFIO.Text == "" && cmbCabinet.Text == "")
                     throw new Exception("ВНИМАНИЕ! ЗАПОЛНИТЕ ПОЛЯ!");
                 if (CabinetInventoryObject.ID == 0)
                 {
                     CabinetInventoryObject.IDInventoryObject = InventoryObject.ID;
+                    CabinetInventoryObject.Date = DateTime.Now;
                     AppData.db.CabinetInventoryObject.Add(CabinetInventoryObject);
                 }
+                // Сохраняется история перемещений
                 History = new History();
                 History.FIO = cmbFIO.Text;
                 History.CabinetNumber = cmbCabinet.Text;
@@ -62,6 +67,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
+        // Переходит на экран добавить кабинеты
         private void buttonAddCabinet_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new CabinetPageView());

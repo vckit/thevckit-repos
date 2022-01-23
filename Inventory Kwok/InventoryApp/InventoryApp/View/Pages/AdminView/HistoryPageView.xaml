@@ -33,7 +33,7 @@
                     <GridView>
                         <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FIO}" Width="300"/>
                         <GridViewColumn Header="Кабинет" DisplayMemberBinding="{Binding CabinetNumber}" Width="250"/>
-                        <GridViewColumn Header="Дата перемещения" DisplayMemberBinding="{Binding Date}" Width="250"/>
+                        <GridViewColumn Header="Дата перемещения" DisplayMemberBinding="{Binding GetDate}" Width="250"/>
                     </GridView>
                 </ListView.View>
             </ListView>

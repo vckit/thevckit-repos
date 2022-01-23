@@ -10,7 +10,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Number" Type="char" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="CabinetInventoryObject">
           <Key>
@@ -27,7 +27,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDStatus" Type="int" Nullable="false" />
-          <Property Name="NumberAct" Type="varchar" MaxLength="20" />
+          <Property Name="NumberAct" Type="char" MaxLength="50" />
           <Property Name="Date" Type="date" />
         </EntityType>
         <EntityType Name="Employe">
@@ -44,7 +44,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CabinetNumber" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CabinetNumber" Type="char" MaxLength="50" Nullable="false" />
           <Property Name="IDInventoryObject" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
@@ -53,8 +53,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="InventoryNumber" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InventoryNumber" Type="char" MaxLength="50" Nullable="false" />
           <Property Name="CommissioningDate" Type="date" Nullable="false" />
           <Property Name="DocumentationPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="IDType" Type="int" Nullable="false" />
@@ -71,8 +71,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SeriaNumber" Type="varchar" MaxLength="30" />
-          <Property Name="Title" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SeriaNumber" Type="char" MaxLength="50" />
+          <Property Name="Title" Type="char" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="InventoryObjectInentoryObjectDetails">
           <Key>
@@ -87,7 +87,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Number" Type="char" MaxLength="50" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
@@ -95,7 +95,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="SubType">
           <Key>
@@ -103,14 +103,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDType" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -480,7 +480,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="CabinetInventoryObject" Relationship="dbinventoryModel.FK_CabinetInventoryObject_Cabinet" FromRole="Cabinet" ToRole="CabinetInventoryObject" />
         </EntityType>
         <EntityType Name="CabinetInventoryObject">
@@ -500,7 +500,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDStatus" Type="Int32" Nullable="false" />
-          <Property Name="NumberAct" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NumberAct" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Status" Relationship="dbinventoryModel.FK_CurrentStatus_Status" FromRole="CurrentStatus" ToRole="Status" />
           <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_CurrentStatus" FromRole="CurrentStatus" ToRole="InventoryObject" />
@@ -520,7 +520,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CabinetNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CabinetNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
           <Property Name="IDInventoryObject" Type="Int32" Nullable="false" />
           <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_History_InventoryObject" FromRole="History" ToRole="InventoryObject" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
@@ -530,8 +530,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="InventoryNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InventoryNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
           <Property Name="CommissioningDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DocumentationPath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IDType" Type="Int32" Nullable="false" />
@@ -556,8 +556,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SeriaNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SeriaNumber" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="InventoryObjectInentoryObjectDetails" Relationship="dbinventoryModel.FK_InventoryObjectInentoryObjectDetails_InventoryObjectDetails" FromRole="InventoryObjectDetails" ToRole="InventoryObjectInentoryObjectDetails" />
         </EntityType>
         <EntityType Name="InventoryObjectInentoryObjectDetails">
@@ -575,7 +575,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_Invoce" FromRole="Invoce" ToRole="InventoryObject" />
         </EntityType>
@@ -584,7 +584,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CurrentStatus" Relationship="dbinventoryModel.FK_CurrentStatus_Status" FromRole="Status" ToRole="CurrentStatus" />
         </EntityType>
         <EntityType Name="SubType">
@@ -593,7 +593,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDType" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_SubType" FromRole="SubType" ToRole="InventoryObject" />
           <NavigationProperty Name="Type" Relationship="dbinventoryModel.FK_SubType_Type" FromRole="SubType" ToRole="Type" />
         </EntityType>
@@ -602,7 +602,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="InventoryObject" Relationship="dbinventoryModel.FK_InventoryObject_Type" FromRole="Type" ToRole="InventoryObject" />
           <NavigationProperty Name="SubType" Relationship="dbinventoryModel.FK_SubType_Type" FromRole="Type" ToRole="SubType" />
         </EntityType>

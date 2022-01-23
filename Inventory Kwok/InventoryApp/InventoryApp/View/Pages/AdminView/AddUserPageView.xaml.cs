@@ -12,6 +12,7 @@ namespace InventoryApp.View.Pages.AdminView
     /// </summary>
     public partial class AddUserPageView : Page
     {
+        // Объявляем объекты
         public User SelectedUser { get; set; }
         public User User { get; set; }
         public int Role { get; set; }
@@ -21,6 +22,7 @@ namespace InventoryApp.View.Pages.AdminView
             InitializeComponent();
         }
 
+        // Добавляем нового пользователя
         private void buttonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -35,7 +37,6 @@ namespace InventoryApp.View.Pages.AdminView
                     }
                     else
                     {
-
                         User = new User();
                         User.Username = txbUsername.Text;
                         User.Password = txbPassword.Text;
@@ -61,13 +62,13 @@ namespace InventoryApp.View.Pages.AdminView
             }
         }
 
-
+        // Выбираем роль пользователя
         private void cmbRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmbRole.SelectedIndex == 0) Role = 1;
             else Role = 2;
         }
-
+        // Удаляем выбранного пользователя из базы данных
         private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
             SelectedUser = (User)ListUser.SelectedItem;

@@ -67,7 +67,7 @@
             <StackPanel HorizontalAlignment="Center"
                         VerticalAlignment="Center">
                 <TextBlock Text="Отвественный: "/>
-                <ComboBox Width="300" SelectedItem="{Binding InventoryObject.Employe}"
+                <ComboBox Name="cmbEmploye" Width="300" SelectedItem="{Binding InventoryObject.Employe}"
                           ItemsSource="{Binding Employees}"
                           DisplayMemberPath="FIO"/>
                 <TextBlock Text="Кабинет: "/>
@@ -90,7 +90,7 @@
                 <TextBlock Text="Дата акта: "/>
                 <DatePicker Width="300" DisplayDate="2022-01-01" SelectedDate="{Binding CurrentStatus.Date}"/>
                 <TextBlock Text="Цена: "/>
-                <TextBox PreviewTextInput="TextBox_PreviewTextInput" Width="300" Text="{Binding InventoryObject.Amount}"/>
+                <TextBox Name="txbPrice" PreviewTextInput="TextBox_PreviewTextInput" Width="300" Text="{Binding InventoryObject.Amount}"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.ColumnSpan="2"

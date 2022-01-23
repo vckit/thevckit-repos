@@ -15,6 +15,8 @@ namespace InventoryApp.View.Pages.AdminView
     public partial class ActioInventoryPageView : Page
     {
         // Объявлем все сущности и списки для работы с базой данных
+        public History History { get; set; }
+        public CabinetInventoryObject CabinetInventoryObject { get; set; }
         public List<Cabinet> Cabinets { get; set; }
         public InventoryObject InventoryObject { get; set; }
         public CurrentStatus CurrentStatus { get; set; }
@@ -45,6 +47,8 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
+                if (Convert.ToInt32(txbPrice.Text) <= 0) throw new Exception("Цена не может быть меньше или равно 0");
+                if (cmbCabinet.SelectedItem == null) throw new Exception("Укажите кабинет!");
                 if (InventoryObject.ID == 0 && CurrentStatus.ID == 0 && Invoce.ID == 0)
                 {
                     AppData.db.CurrentStatus.Add(CurrentStatus);
@@ -57,7 +61,14 @@ namespace InventoryApp.View.Pages.AdminView
                         throw new Exception($"Объект с интерьерным номером {InventoryObject.InventoryNumber} уже существует в базе данных");
                     }
                 }
-
+                History = new History();
+                History.FIO = cmbEmploye.Text;
+                History.CabinetNumber = cmbCabinet.Text;
+                History.IDInventoryObject = InventoryObject.ID;
+                History.Date = DateTime.Now;
+                AppData.db.History.Add(History);
+                var selectedCabinet = AppData.db.CabinetInventoryObject.FirstOrDefault(i => i.IDInventoryObject == InventoryObject.ID);
+                if (selectedCabinet != null) selectedCabinet.IDCabinet = AppData.db.Cabinet.FirstOrDefault(i => i.Number == cmbCabinet.Text).ID;
                 if (file.FileName != "")
                     InventoryObject.DocumentationPath = file.FileName;
                 InventoryObject.LifeTime = int.Parse(cmbLifeTime.Text);
@@ -69,7 +80,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Упс... что-то пошло не так :(", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -92,7 +103,8 @@ namespace InventoryApp.View.Pages.AdminView
 
         private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var selectedType = cmbType.SelectedItem as Model.Type;
+            cmbSubType.ItemsSource = AppData.db.SubType.Where(i => i.IDType == selectedType.ID).ToList();
         }
     }
 }

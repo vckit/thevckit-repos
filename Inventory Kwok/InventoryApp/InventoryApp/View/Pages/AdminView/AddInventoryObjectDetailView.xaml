@@ -40,8 +40,8 @@
                       Height="300">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding InventoryObjectDetails.Title}" Width="200"/>
                         <GridViewColumn Header="Серийный номер" DisplayMemberBinding="{Binding InventoryObjectDetails.SeriaNumber}" Width="200"/>
+                        <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding InventoryObjectDetails.Title}" Width="200"/>
                         <GridViewColumn Header="Редактировать" Width="300">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
