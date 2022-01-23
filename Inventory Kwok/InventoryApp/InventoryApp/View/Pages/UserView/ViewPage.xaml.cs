@@ -124,7 +124,10 @@ namespace InventoryApp.View.Pages.UserView
                     table.Cell(i, 2).Range.Text = item.InventoryObject.InventoryNumber;
                     table.Cell(i, 3).Range.Text = item.InventoryObject.CommissioningDate.ToLongTimeString();
                     table.Cell(i, 4).Range.Text = item.InventoryObject.LifeTime.ToString();
-                    table.Cell(i, 5).Range.Text = "ДА";
+                    if (item.InventoryObject.CommissioningDate.AddYears(item.InventoryObject.LifeTime) < DateTime.Today)
+                        table.Cell(i, 5).Range.Text = "НЕТ";
+                    else
+                        table.Cell(i, 5).Range.Text = "ДА";
                     table.Cell(i, 6).Range.Text = item.InventoryObject.Type.Title;
                     table.Cell(i, 7).Range.Text = item.InventoryObject.SubType.Title;
                     table.Cell(i, 8).Range.Text = item.InventoryObjectDetails.ID.ToString();

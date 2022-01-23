@@ -84,3 +84,5 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.pdb
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.pdb
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.csproj.AssemblyReference.cache
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Document.NET.dll
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Words.NET.dll

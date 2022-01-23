@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Xceed.Words.NET;
 using Word = Microsoft.Office.Interop.Word;
 
 namespace InventoryApp.View.Pages.AdminView
@@ -133,7 +135,10 @@ namespace InventoryApp.View.Pages.AdminView
                     table.Cell(i, 2).Range.Text = item.InventoryObject.InventoryNumber;
                     table.Cell(i, 3).Range.Text = item.InventoryObject.CommissioningDate.ToLongTimeString();
                     table.Cell(i, 4).Range.Text = item.InventoryObject.LifeTime.ToString();
-                    table.Cell(i, 5).Range.Text = "ДА";
+                    if (item.InventoryObject.CommissioningDate.AddYears(item.InventoryObject.LifeTime) < DateTime.Today)
+                        table.Cell(i, 5).Range.Text = "НЕТ";
+                    else
+                        table.Cell(i, 5).Range.Text = "ДА";
                     table.Cell(i, 6).Range.Text = item.InventoryObject.Type.Title;
                     table.Cell(i, 7).Range.Text = item.InventoryObject.SubType.Title;
                     table.Cell(i, 8).Range.Text = item.InventoryObjectDetails.ID.ToString();
@@ -149,6 +154,7 @@ namespace InventoryApp.View.Pages.AdminView
                     i++;
                 }
                 document.SaveAs2($"{Environment.CurrentDirectory}\\Ведомость инвентаризации.docx");
+                document.PageSetup.Orientation = Word.WdOrientation.wdOrientLandscape;
                 document.Close(Word.WdSaveOptions.wdDoNotSaveChanges);
                 word.Quit(Word.WdSaveOptions.wdDoNotSaveChanges);
                 MessageBox.Show($"Ведомость успешно сформирована, расположение: {Environment.CurrentDirectory}\\Ведомость инвентаризации.docx!", "Ведомость успешно сформирован.", MessageBoxButton.OK, MessageBoxImage.Information);
