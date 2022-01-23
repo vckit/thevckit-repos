@@ -266,7 +266,7 @@ namespace InventoryApp.View.Pages.AdminView
         {
             Page_Loaded(null, null);
         }
-
+        // Метод подсчёта объектов, которых можно списть
         private List<InventoryObject> CheckDateObject(List<InventoryObject> collection)
         {
             List<InventoryObject> list = new List<InventoryObject>();
@@ -276,7 +276,7 @@ namespace InventoryApp.View.Pages.AdminView
             }
             if (list.Count > 0) return list; else return null;
         }
-
+        // Событие при котором происходит выводе объектов, которых можно списать
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (CheckDateObject(AppData.db.InventoryObject.ToList()) != null)
@@ -289,7 +289,7 @@ namespace InventoryApp.View.Pages.AdminView
                 checkDate.IsChecked = false;
             }
         }
-
+        // Если убрать галочку, выводим всё объекты
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             Page_Loaded(null, null);
@@ -299,7 +299,7 @@ namespace InventoryApp.View.Pages.AdminView
         {
             Search((cmbStatus.SelectedItem as ComboBoxItem).Content.ToString(), txbSearch.Text);
         }
-
+        // Метод поиска и сортировки
         private void Search(string status = "", string search = "")
         {
             var inventoryObjects = AppData.db.InventoryObject.ToList();
@@ -321,21 +321,21 @@ namespace InventoryApp.View.Pages.AdminView
                 {
                     inventoryObjects = inventoryObjects.Where(item => item.CurrentStatus.Status.Title == "Подразделение").ToList();
                 }
-                if(status == "Все")
+                if (status == "Все")
                 {
-                    inventoryObjects =inventoryObjects.ToList();
+                    inventoryObjects = inventoryObjects.ToList();
                 }
             }
             if (!string.IsNullOrEmpty(search) && !string.IsNullOrEmpty(search))
             {
-                inventoryObjects = inventoryObjects.Where(item => item.Title.Contains(txbSearch.Text) ||
-                item.LifeTime.ToString().Contains(txbSearch.Text) ||
-                item.Employe.FIO.Contains(txbSearch.Text) ||
-                item.Type.Title.Contains(txbSearch.Text) ||
-                item.SubType.Title.Contains(txbSearch.Text) ||
-                item.CurrentStatus.Status.Title.Contains(txbSearch.Text) ||
-                item.Amount.ToString().Contains(txbSearch.Text) ||
-                item.Invoce.Number.Contains(txbSearch.Text)).ToList();
+                inventoryObjects = inventoryObjects.Where(item => item.Title.Contains(search) ||
+                item.LifeTime.ToString().Contains(search) ||
+                item.Employe.FIO.Contains(search) ||
+                item.Type.Title.Contains(search) ||
+                item.SubType.Title.Contains(search) ||
+                item.CurrentStatus.Status.Title.Contains(search) ||
+                item.Amount.ToString().Contains(search) ||
+                item.Invoce.Number.Contains(search)).ToList();
             }
             DataList.ItemsSource = inventoryObjects;
         }

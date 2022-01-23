@@ -47,7 +47,8 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
-                if (Convert.ToDouble(txbPrice.Text) <= 0) throw new Exception("Цена не может быть меньше или равно 0");
+                if (txbPrice.Text == "0" || txbPrice.Text == "0." || txbPrice.Text == "0.0" || txbPrice.Text == "0.00") throw new Exception("Цена не может быть меньше или равно 0");
+                if (cmbCabinet.Text == "") throw new Exception("Укажите кабинет");
                 if (InventoryObject.ID == 0 && CurrentStatus.ID == 0 && Invoce.ID == 0)
                 {
                     AppData.db.CurrentStatus.Add(CurrentStatus);
@@ -66,7 +67,7 @@ namespace InventoryApp.View.Pages.AdminView
                     CabinetInventoryObject.Date = DateTime.Now;
                     AppData.db.CabinetInventoryObject.Add(CabinetInventoryObject);
                 }
-
+                // Фиксируем историю изменений
                 History = new History();
                 History.FIO = cmbEmploye.Text;
                 History.CabinetNumber = cmbCabinet.Text;
@@ -113,6 +114,18 @@ namespace InventoryApp.View.Pages.AdminView
         {
             var selectedType = cmbType.SelectedItem as Model.Type;
             cmbSubType.ItemsSource = AppData.db.SubType.Where(i => i.IDType == selectedType.ID).ToList();
+        }
+
+        public int l, n;
+        private void txbPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            n = txbPrice.Text.IndexOf(".");
+
+            if (n > 0 && txbPrice.Text.Length > n + 3)
+            {
+                txbPrice.Text = txbPrice.Text.Substring(0, n + 3);
+                l = txbPrice.Text.Length;
+            }
         }
     }
 }
