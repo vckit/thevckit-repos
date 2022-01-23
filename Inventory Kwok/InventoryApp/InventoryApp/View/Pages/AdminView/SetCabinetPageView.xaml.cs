@@ -45,10 +45,10 @@ namespace InventoryApp.View.Pages.AdminView
                     throw new Exception("ВНИМАНИЕ! ЗАПОЛНИТЕ ПОЛЯ!");
                 if (CabinetInventoryObject.ID == 0)
                 {
-                    CabinetInventoryObject.IDInventoryObject = InventoryObject.ID;
-                    CabinetInventoryObject.Date = DateTime.Now;
                     AppData.db.CabinetInventoryObject.Add(CabinetInventoryObject);
                 }
+                CabinetInventoryObject.IDInventoryObject = InventoryObject.ID;
+                CabinetInventoryObject.Date = DateTime.Now;
                 // Сохраняется история перемещений
                 History = new History();
                 History.FIO = cmbFIO.Text;

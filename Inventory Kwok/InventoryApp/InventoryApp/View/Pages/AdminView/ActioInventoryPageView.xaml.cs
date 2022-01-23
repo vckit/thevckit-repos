@@ -47,8 +47,7 @@ namespace InventoryApp.View.Pages.AdminView
         {
             try
             {
-                if (Convert.ToInt32(txbPrice.Text) <= 0) throw new Exception("Цена не может быть меньше или равно 0");
-                if (cmbCabinet.SelectedItem == null) throw new Exception("Укажите кабинет!");
+                if (txbPrice.Text == "0") throw new Exception("Цена не может быть меньше или равно 0");
                 if (InventoryObject.ID == 0 && CurrentStatus.ID == 0 && Invoce.ID == 0)
                 {
                     AppData.db.CurrentStatus.Add(CurrentStatus);
@@ -61,6 +60,7 @@ namespace InventoryApp.View.Pages.AdminView
                         throw new Exception($"Объект с интерьерным номером {InventoryObject.InventoryNumber} уже существует в базе данных");
                     }
                 }
+
                 History = new History();
                 History.FIO = cmbEmploye.Text;
                 History.CabinetNumber = cmbCabinet.Text;
@@ -101,6 +101,7 @@ namespace InventoryApp.View.Pages.AdminView
             e.Handled = "0123456789.".IndexOf(e.Text) < 0;
         }
 
+        // Определяем подтип, при выборе типа
         private void cmbType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedType = cmbType.SelectedItem as Model.Type;
