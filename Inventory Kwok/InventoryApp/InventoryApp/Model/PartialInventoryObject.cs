@@ -37,5 +37,21 @@ namespace InventoryApp.Model
                 value = CommissioningDate.ToString("d");
             }
         }
+
+        public InventoryObject(string title, string inventoryNumber, string documentationPath, DateTime commissioningDate, int idType, int idSubType, int lifeTime, int idInvoce, int idCurrentStatus, decimal amount, int idEmployee, int idInventoryObjectDetails)
+        {
+            this.Title = title;
+            this.InventoryNumber = inventoryNumber;
+            this.DocumentationPath = documentationPath;
+            this.CommissioningDate = commissioningDate;
+            this.IDType = idType;
+            this.IDSubType = idSubType;
+            this.LifeTime = lifeTime;
+            this.IDInvoce = idInvoce;
+            this.IDCurrentStatus = idCurrentStatus;
+            this.IDEmployee = idEmployee;
+            this.Amount = amount;
+            this.IDInventoryObjectDetail = idInventoryObjectDetails;
+        }
     }
 }

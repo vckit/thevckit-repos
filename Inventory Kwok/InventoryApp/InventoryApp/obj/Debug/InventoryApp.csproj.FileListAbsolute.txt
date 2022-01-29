@@ -32,10 +32,13 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryAp
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryApp\obj\Debug\View\Pages\AdminView\ActioInventoryPageView.baml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryApp\obj\Debug\View\Windows\SetCabinetWindow.g.cs
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\InventoryApp\InventoryApp\obj\Debug\View\Windows\SetCabinetWindow.baml
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.exe
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.exe.config
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.exe
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.pdb
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\EntityFramework.dll
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Document.NET.dll
+C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Words.NET.dll
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\EntityFramework.xml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.csproj.SuggestedBindingRedirects.cache
@@ -82,7 +85,3 @@ C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\Inventory
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.csproj.CopyComplete
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.exe
 C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.pdb
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\InventoryApp.pdb
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\obj\Debug\InventoryApp.csproj.AssemblyReference.cache
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Document.NET.dll
-C:\Users\thevc\Documents\my work\github\thevckit-dotnet\Inventory Kwok\InventoryApp\InventoryApp\bin\Debug\Xceed.Words.NET.dll

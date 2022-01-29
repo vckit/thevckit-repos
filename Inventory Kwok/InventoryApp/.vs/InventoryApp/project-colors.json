@@ -5,7 +5,12 @@
       "ProjectGuid": "1906df8d-f319-406d-a68a-7de12b88f113",
       "DisplayName": "InventoryApp",
       "ColorIndex": 0
+    },
+    "fd089ddc-a0a2-482b-8a01-f5f79d055c96": {
+      "ProjectGuid": "fd089ddc-a0a2-482b-8a01-f5f79d055c96",
+      "DisplayName": "InventoryApp.Tests",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
